@@ -46,10 +46,11 @@ portfolio/
 - Create: `i18n/en.json` (empty placeholder)
 - Create: `.gitignore`
 
-- [ ] **Step 1: Create directory structure**
+- [ ] **Step 1: Initialize git and create directory structure**
 
 ```bash
 cd /c/Users/aaperez/portfolio
+git init
 mkdir -p css js i18n assets
 ```
 
@@ -74,10 +75,49 @@ touch css/styles.css js/i18n.js js/main.js js/particles.js i18n/es.json i18n/en.
 cp "/c/Users/aaperez/Downloads/CV Adrian Arroyo Perez.pdf" assets/cv-adrian-arroyo.pdf
 ```
 
-- [ ] **Step 5: Commit scaffolding**
+If the file does not exist at that path, skip this step and copy it manually later.
+
+- [ ] **Step 5: Create README.md**
+
+```markdown
+# Portfolio — Adrian Arroyo Perez
+
+Personal portfolio website showcasing my professional experience, projects, and technical skills.
+
+## Tech Stack
+
+- HTML5 + CSS3 + JavaScript (vanilla)
+- JSON-based i18n (ES/EN)
+- GitHub Pages
+
+## Local Development
+
+Open `index.html` in a browser. For i18n to work via fetch, use a local server:
 
 ```bash
-git add .gitignore css/ js/ i18n/ assets/
+npx serve .
+```
+
+## Deployment
+
+Hosted on GitHub Pages from the `main` branch.
+```
+
+- [ ] **Step 6: Create placeholder og-image.png**
+
+Create a simple 1200x630 placeholder image for Open Graph. This can be replaced later with a proper design. For now, create a minimal SVG-based placeholder:
+
+```bash
+# Create a minimal placeholder (replace with a real image later)
+echo "placeholder" > assets/og-image.png
+```
+
+Note: Replace `assets/og-image.png` with a real 1200x630 image before final deployment. Tools like Canva or Figma can generate one with your name and title.
+
+- [ ] **Step 7: Commit scaffolding**
+
+```bash
+git add .gitignore css/ js/ i18n/ assets/ README.md
 git commit -m "chore: scaffold project directory structure"
 ```
 
@@ -624,6 +664,8 @@ const I18n = (() => {
 document.addEventListener('DOMContentLoaded', () => I18n.init());
 ```
 
+Note: The spec mentions `data-i18n-placeholder` support. This is intentionally deferred since no pages currently have form inputs with placeholders. If needed later, add a `querySelectorAll('[data-i18n-placeholder]')` loop that calls `el.setAttribute('placeholder', translations[key])`.
+
 - [ ] **Step 2: Commit**
 
 ```bash
@@ -640,33 +682,202 @@ git commit -m "feat: add i18n engine with fallback chain and DOM binding"
 
 Main page with all sections. Spanish text inline as fallback. `data-i18n` / `data-i18n-html` attributes for translation.
 
-- [ ] **Step 1: Write index.html**
+- [ ] **Step 1: Write index.html — complete file**
 
-The full HTML is provided in the spec mockup. Key points:
-- `<html lang="es">` with full SEO meta tags and Open Graph
-- `<canvas id="particles-canvas">` as first body child
-- Semantic nav with `role="navigation"` and `aria-label`
-- Hamburger button with `aria-expanded`
-- Hero as `<header>`, rest wrapped in `<main>`
-- All text elements have `data-i18n` or `data-i18n-html` attributes
-- Spanish text as inline fallback content
-- Scripts at end of body: `i18n.js`, `main.js`, `particles.js` (defer)
-- 8 sections: navbar, hero, about, stack, projects (6 featured), experience (timeline), contact, footer
-- Contact links: email (mailto), LinkedIn, GitHub, CV download
-- All `<a>` external links have `target="_blank" rel="noopener"`
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrian Arroyo — Desarrollador Fullstack</title>
+  <meta name="description" content="Portfolio de Adrian Arroyo Perez — Desarrollador Fullstack especializado en Java, Spring Boot y tecnologias web">
+  <meta name="keywords" content="desarrollador, fullstack, java, spring boot, portfolio, ingeniero informatico">
+  <meta property="og:title" content="Adrian Arroyo — Fullstack Developer">
+  <meta property="og:description" content="Portfolio profesional — Desarrollador Fullstack">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
 
-See Task 5 in full code reference below. The complete index.html should include:
-- DOCTYPE, head with meta/OG tags
-- Navbar with logo, nav-links, lang-toggle, hamburger
-- Mobile nav overlay
-- Hero section with tag, h1, description, buttons
-- About section
-- Stack grid (14 tech cards)
-- Projects grid (6 featured cards: #1, #2, #4, #5, #8, #11)
-- Timeline (3 entries: job, degree, high school)
-- Contact links
-- Footer
-- Script tags
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegacion principal">
+    <a href="#" class="logo">&lt;<span>AA</span>/&gt;</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">Sobre mi</a></li>
+      <li><a href="#stack" data-i18n="nav.stack">Stack</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" onclick="I18n.toggle()" aria-label="Cambiar idioma">EN</button>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="mobileNav" role="navigation" aria-label="Navegacion movil">
+    <a href="#about" data-i18n="nav.about" onclick="closeMenu()">Sobre mi</a>
+    <a href="#stack" data-i18n="nav.stack" onclick="closeMenu()">Stack</a>
+    <a href="#projects" data-i18n="nav.projects" onclick="closeMenu()">Proyectos</a>
+    <a href="#experience" data-i18n="nav.experience" onclick="closeMenu()">Experiencia</a>
+    <a href="#contact" data-i18n="nav.contact" onclick="closeMenu()">Contacto</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-tag" data-i18n="hero.tag">Desarrollador Fullstack</div>
+      <h1 data-i18n-html="hero.title">Hola, soy <span class="gradient">Adrian Arroyo</span></h1>
+      <p data-i18n="hero.description">Desarrollador fullstack especializado en Java, Spring Boot y tecnologias web. Apasionado por la automatizacion CI/CD, la calidad del codigo y las soluciones que escalan.</p>
+      <div class="hero-buttons">
+        <a href="assets/cv-adrian-arroyo.pdf" download class="btn-primary" data-i18n="hero.btn.cv">Descargar CV</a>
+        <a href="#projects" class="btn-secondary" data-i18n="hero.btn.projects">Ver proyectos</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="section-inner reveal">
+        <h2 class="section-title" data-i18n-html="about.title">Sobre <span>mi</span></h2>
+        <p class="about-text" data-i18n="about.text">Soy Adrian, ingeniero informatico y desarrollador fullstack con experiencia en entornos universitarios. Trabajo con Java, Spring Boot, ZK Framework y tecnologias cloud, desarrollando y manteniendo aplicaciones web que dan servicio a la comunidad academica. Me apasiona la automatizacion de procesos, la integracion continua y explorar como la IA puede mejorar los flujos de trabajo de desarrollo.</p>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack" class="section">
+      <div class="section-inner reveal">
+        <h2 class="section-title" data-i18n-html="stack.title">Mi <span>Stack</span></h2>
+        <p class="section-subtitle" data-i18n="stack.subtitle">Tecnologias con las que trabajo dia a dia</p>
+        <div class="tech-grid">
+          <div class="tech-card"><div class="tech-icon">&#9749;</div><div class="tech-name">Java</div></div>
+          <div class="tech-card"><div class="tech-icon">&#127811;</div><div class="tech-name">Spring Boot</div></div>
+          <div class="tech-card"><div class="tech-icon">&#127760;</div><div class="tech-name">HTML / CSS</div></div>
+          <div class="tech-card"><div class="tech-icon">&#9889;</div><div class="tech-name">JavaScript</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128451;</div><div class="tech-name">SQL</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128051;</div><div class="tech-name">Docker</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128311;</div><div class="tech-name">Azure DevOps</div></div>
+          <div class="tech-card"><div class="tech-icon">&#127917;</div><div class="tech-name">Playwright</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128295;</div><div class="tech-name">Git</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128039;</div><div class="tech-name">Linux</div></div>
+          <div class="tech-card"><div class="tech-icon">&#129302;</div><div class="tech-name">Claude AI</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128202;</div><div class="tech-name">BIRT Reports</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128310;</div><div class="tech-name">ZK Framework</div></div>
+          <div class="tech-card"><div class="tech-icon">&#128230;</div><div class="tech-name">Jakarta EE</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (6 featured) -->
+    <section id="projects" class="section">
+      <div class="section-inner reveal">
+        <h2 class="section-title" data-i18n-html="projects.title">Mis <span>Proyectos</span></h2>
+        <p class="section-subtitle" data-i18n="projects.subtitle">Una seleccion de lo que he construido</p>
+        <div class="projects-grid">
+          <div class="project-card" data-type="profesional" data-tags="java,spring,sso">
+            <div class="project-type project-type--profesional">Profesional</div>
+            <h3 data-i18n="project.1.title">Login Abstracto</h3>
+            <p data-i18n="project.1.desc">Sistema de autenticacion compartido y reutilizable para multiples aplicaciones web</p>
+            <div class="project-tags"><span>Java</span><span>Spring</span><span>SSO</span></div>
+          </div>
+          <div class="project-card" data-type="profesional" data-tags="azure-devops,yaml,cicd">
+            <div class="project-type project-type--profesional">Profesional</div>
+            <h3 data-i18n="project.2.title">Pipelines CI/CD</h3>
+            <p data-i18n="project.2.desc">Automatizacion de integracion y despliegue continuo en Azure DevOps</p>
+            <div class="project-tags"><span>Azure DevOps</span><span>YAML</span><span>CI/CD</span></div>
+          </div>
+          <div class="project-card" data-type="profesional" data-tags="fullstack,ux-ui,java">
+            <div class="project-type project-type--profesional">Profesional</div>
+            <h3 data-i18n="project.4.title">Rediseno Plataforma Online</h3>
+            <p data-i18n="project.4.desc">Rediseno completo de plataforma educativa online</p>
+            <div class="project-tags"><span>Fullstack</span><span>UX/UI</span><span>Java</span></div>
+          </div>
+          <div class="project-card" data-type="profesional" data-tags="java,spring-boot,sql">
+            <div class="project-type project-type--profesional">Profesional</div>
+            <h3 data-i18n="project.5.title">Mejoras ERP</h3>
+            <p data-i18n="project.5.desc">Mejoras funcionales en sistema de planificacion de recursos empresariales</p>
+            <div class="project-tags"><span>Java</span><span>Spring Boot</span><span>SQL</span></div>
+          </div>
+          <div class="project-card" data-type="profesional" data-tags="ai,claude,automation">
+            <div class="project-type project-type--profesional">Profesional</div>
+            <h3 data-i18n="project.8.title">Automatizacion DevOps con IA</h3>
+            <p data-i18n="project.8.desc">Skills y automatizacion con IA para flujos DevOps</p>
+            <div class="project-tags"><span>AI</span><span>Claude</span><span>Automation</span></div>
+          </div>
+          <div class="project-card" data-type="personal" data-tags="android,java,mobile">
+            <div class="project-type project-type--personal">Personal</div>
+            <h3 data-i18n="project.11.title">PetWatch</h3>
+            <p data-i18n="project.11.desc">App Android de seguimiento y gestion de mascotas</p>
+            <div class="project-tags"><span>Android</span><span>Java</span><span>Mobile</span></div>
+          </div>
+        </div>
+        <div class="projects-cta">
+          <a href="projects.html" class="btn-secondary" data-i18n="projects.cta">Ver todos los proyectos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="section-inner reveal">
+        <h2 class="section-title" data-i18n-html="experience.title">Mi <span>Trayectoria</span></h2>
+        <p class="section-subtitle" data-i18n="experience.subtitle">Formacion y experiencia profesional</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--work"></div>
+            <div class="timeline-date" data-i18n="experience.job1.date">Oct 2024 — Actualidad</div>
+            <h3 data-i18n="experience.job1.title">Desarrollador Fullstack</h3>
+            <p class="timeline-place" data-i18n="experience.job1.place">Entorno universitario — Desarrollo y mantenimiento de aplicaciones web</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--education"></div>
+            <div class="timeline-date" data-i18n="experience.edu1.date">2020 — Actualidad</div>
+            <h3 data-i18n="experience.edu1.title">Grado en Ingenieria Informatica</h3>
+            <p class="timeline-place" data-i18n="experience.edu1.place">Universidad de Cordoba</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--other"></div>
+            <div class="timeline-date" data-i18n="experience.edu2.date">2018 — 2020</div>
+            <h3 data-i18n="experience.edu2.title">Bachillerato</h3>
+            <p class="timeline-place" data-i18n="experience.edu2.place">IES Luis de Gongora, Cordoba</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-inner reveal">
+        <h2 class="section-title" data-i18n-html="contact.title">Hablemos<span>.</span></h2>
+        <p class="section-subtitle" data-i18n="contact.subtitle">Interesado en trabajar juntos?</p>
+        <div class="contact-links">
+          <a href="mailto:adriarroyo2002@gmail.com" class="contact-link">&#9993; adriarroyo2002@gmail.com</a>
+          <a href="https://linkedin.com/in/" class="contact-link" target="_blank" rel="noopener">&#128188; LinkedIn</a>
+          <a href="https://github.com/" class="contact-link" target="_blank" rel="noopener">&#128025; GitHub</a>
+          <a href="assets/cv-adrian-arroyo.pdf" download class="contact-link" data-i18n="contact.cv">&#128196; Descargar CV</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p data-i18n="footer.text">Disenado y desarrollado por Adrian Arroyo Perez</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/particles.js" defer></script>
+</body>
+</html>
+```
 
 - [ ] **Step 2: Open index.html in browser, verify all sections render**
 
@@ -837,15 +1048,151 @@ git commit -m "feat: add canvas particle effect with reduced-motion support"
 
 All 11 projects with filter buttons (Todos / Profesional / Personal).
 
-- [ ] **Step 1: Write projects.html**
+- [ ] **Step 1: Write projects.html — complete file**
 
-Key differences from landing:
-- Navbar links point to `index.html#section` instead of `#section`
-- Has back link to index.html
-- Has filter bar with 3 buttons
-- Shows all 11 project cards (not just 6)
-- Inline `<script>` at bottom handles filter logic: reads `data-filter` on button click, shows/hides cards via `data-type` attribute match
-- Same navbar, footer, canvas, and script includes as landing
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos — Adrian Arroyo</title>
+  <meta name="description" content="Proyectos de Adrian Arroyo Perez — Desarrollador Fullstack">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <nav class="navbar" role="navigation" aria-label="Navegacion principal">
+    <a href="index.html" class="logo">&lt;<span>AA</span>/&gt;</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav.about">Sobre mi</a></li>
+      <li><a href="index.html#stack" data-i18n="nav.stack">Stack</a></li>
+      <li><a href="index.html#projects" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="index.html#experience" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="index.html#contact" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" onclick="I18n.toggle()" aria-label="Cambiar idioma">EN</button>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="mobileNav" role="navigation" aria-label="Navegacion movil">
+    <a href="index.html#about" data-i18n="nav.about" onclick="closeMenu()">Sobre mi</a>
+    <a href="index.html#stack" data-i18n="nav.stack" onclick="closeMenu()">Stack</a>
+    <a href="index.html#projects" data-i18n="nav.projects" onclick="closeMenu()">Proyectos</a>
+    <a href="index.html#experience" data-i18n="nav.experience" onclick="closeMenu()">Experiencia</a>
+    <a href="index.html#contact" data-i18n="nav.contact" onclick="closeMenu()">Contacto</a>
+  </div>
+
+  <main class="section" style="padding-top: calc(var(--nav-height) + 40px);">
+    <div class="section-inner">
+      <a href="index.html" class="back-link" data-i18n="projects.back">Volver al inicio</a>
+      <h2 class="section-title" data-i18n-html="projects.page.title">Todos los <span>Proyectos</span></h2>
+      <p class="section-subtitle" data-i18n="projects.page.subtitle">Catalogo completo de proyectos profesionales y personales</p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">Todos</button>
+        <button class="filter-btn" data-filter="profesional" data-i18n="projects.filter.profesional">Profesional</button>
+        <button class="filter-btn" data-filter="personal" data-i18n="projects.filter.personal">Personal</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <div class="project-card" data-type="profesional" data-tags="java,spring,sso">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.1.title">Login Abstracto</h3>
+          <p data-i18n="project.1.desc">Sistema de autenticacion compartido y reutilizable para multiples aplicaciones web</p>
+          <div class="project-tags"><span>Java</span><span>Spring</span><span>SSO</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="azure-devops,yaml,cicd">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.2.title">Pipelines CI/CD</h3>
+          <p data-i18n="project.2.desc">Automatizacion de integracion y despliegue continuo en Azure DevOps</p>
+          <div class="project-tags"><span>Azure DevOps</span><span>YAML</span><span>CI/CD</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="playwright,qa,automation">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.3.title">Testing E2E</h3>
+          <p data-i18n="project.3.desc">Framework de testing automatizado end-to-end</p>
+          <div class="project-tags"><span>Playwright</span><span>QA</span><span>Automation</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="fullstack,ux-ui,java">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.4.title">Rediseno Plataforma Online</h3>
+          <p data-i18n="project.4.desc">Rediseno completo de plataforma educativa online</p>
+          <div class="project-tags"><span>Fullstack</span><span>UX/UI</span><span>Java</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="java,spring-boot,sql">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.5.title">Mejoras ERP</h3>
+          <p data-i18n="project.5.desc">Mejoras funcionales en sistema de planificacion de recursos empresariales</p>
+          <div class="project-tags"><span>Java</span><span>Spring Boot</span><span>SQL</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="birt,sql,reporting">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.6.title">Informes BIRT</h3>
+          <p data-i18n="project.6.desc">Generacion de reportes empresariales</p>
+          <div class="project-tags"><span>BIRT</span><span>SQL</span><span>Reporting</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="spring-cloud,microservicios">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.7.title">Cloud Config</h3>
+          <p data-i18n="project.7.desc">Servidor de configuracion centralizada</p>
+          <div class="project-tags"><span>Spring Cloud</span><span>Microservicios</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="ai,claude,automation">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.8.title">Automatizacion DevOps con IA</h3>
+          <p data-i18n="project.8.desc">Skills y automatizacion con IA para flujos DevOps</p>
+          <div class="project-tags"><span>AI</span><span>Claude</span><span>Automation</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="jakarta-ee,java,refactoring">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.9.title">Migracion Jakarta EE</h3>
+          <p data-i18n="project.9.desc">Migracion tecnologica de javax a Jakarta</p>
+          <div class="project-tags"><span>Jakarta EE</span><span>Java</span><span>Refactoring</span></div>
+        </div>
+        <div class="project-card" data-type="profesional" data-tags="zk,security,java">
+          <div class="project-type project-type--profesional">Profesional</div>
+          <h3 data-i18n="project.10.title">Seguridad ZK</h3>
+          <p data-i18n="project.10.desc">Modulo de seguridad para framework ZK</p>
+          <div class="project-tags"><span>ZK</span><span>Security</span><span>Java</span></div>
+        </div>
+        <div class="project-card" data-type="personal" data-tags="android,java,mobile">
+          <div class="project-type project-type--personal">Personal</div>
+          <h3 data-i18n="project.11.title">PetWatch</h3>
+          <p data-i18n="project.11.desc">App Android de seguimiento y gestion de mascotas</p>
+          <div class="project-tags"><span>Android</span><span>Java</span><span>Mobile</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer.text">Disenado y desarrollado por Adrian Arroyo Perez</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/particles.js" defer></script>
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#projectsGrid .project-card').forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+```
 
 - [ ] **Step 2: Verify in browser**
 
