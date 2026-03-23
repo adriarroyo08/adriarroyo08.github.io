@@ -1,5 +1,10 @@
 # Diseño: Portfolio Personal — Adrián Arroyo Pérez
 
+- **Versión:** 1.1
+- **Autor:** Adrián Arroyo Pérez
+- **Fecha:** 2026-03-23
+- **Estado:** Aprobado
+
 ## Resumen
 
 Sitio web estático de portfolio personal para presentar CV, trayectoria profesional y proyectos a empresas del sector de ingeniería informática. Hospedado en GitHub Pages, bilingüe (ES/EN), con estilo dark mode y elementos visuales creativos (animaciones, gradientes, partículas).
@@ -19,6 +24,7 @@ Sitio web estático de portfolio personal para presentar CV, trayectoria profesi
 portfolio/
 ├── index.html              # Landing page
 ├── projects.html           # Página de todos los proyectos
+├── 404.html                # Página 404 personalizada con enlace a landing
 ├── css/
 │   └── styles.css          # Estilos globales
 ├── js/
@@ -48,7 +54,7 @@ Scroll continuo con las siguientes secciones en orden:
 
 4. **Stack tecnológico** — Grid responsive de tarjetas con hover (elevación + borde gradiente). Tecnologías: Java, Spring Boot, HTML/CSS, JavaScript, SQL, Docker, Azure DevOps, Playwright, Git, Linux, Claude AI, BIRT Reports, ZK Framework, Jakarta EE.
 
-5. **Proyectos destacados** — 6 cards seleccionados de los 11 totales. Cada card: etiqueta tipo (Profesional/Personal), título, descripción corta, tags de tecnología. Hover: elevación + línea gradiente superior. Botón "Ver todos →" enlaza a `projects.html`.
+5. **Proyectos destacados** — 6 cards seleccionados de los 11 totales (destacados: #1 Login Abstracto, #2 Pipelines CI/CD, #4 Rediseño Plataforma Online, #5 Mejoras ERP, #8 Automatización DevOps con IA, #11 PetWatch). Cada card: etiqueta tipo (Profesional/Personal), título, descripción corta, tags de tecnología. Hover: elevación + línea gradiente superior. Botón "Ver todos →" enlaza a `projects.html`.
 
 6. **Trayectoria** — Timeline vertical con línea de gradiente. Puntos de color diferenciados: verde (trabajo), azul (grado), púrpura (bachillerato). Entradas:
    - Oct 2024 — Actualidad: Desarrollador Fullstack (entorno universitario)
@@ -62,8 +68,9 @@ Scroll continuo con las siguientes secciones en orden:
 ### Proyectos (`projects.html`)
 
 - Misma navbar y footer que landing
-- Filtro por tipo: Todos / Profesional / Personal
+- Filtro por tipo: Todos / Profesional / Personal (botones toggle, filtrado via atributo `data-type` en cada card con JS)
 - Grid de 11 cards con la misma estructura visual que la landing
+- Datos de proyectos incluidos en los archivos i18n JSON (descripciones traducidas) + atributos `data-type` y `data-tags` en el HTML para metadatos
 - Botón de volver a la landing
 
 ## Sistema i18n
@@ -73,13 +80,19 @@ Scroll continuo con las siguientes secciones en orden:
 - Elementos HTML con atributo `data-i18n="clave"` para texto
 - Elementos con `data-i18n-placeholder="clave"` para placeholders
 - `i18n.js` carga el JSON del idioma seleccionado via fetch, recorre el DOM y aplica los textos
-- Para HTML dentro de traducciones (ej: `<span>` en títulos), usar `innerHTML` en claves marcadas como `data-i18n-html="clave"`
+- Para HTML dentro de traducciones (ej: `<span>` en títulos), usar `innerHTML` en claves marcadas como `data-i18n-html="clave"`. Los archivos JSON de traducción son contenido de confianza, controlado por el autor. Nunca usar este mecanismo con datos externos o suministrados por usuarios.
 
-### Persistencia
+### Persistencia y detección de idioma
 
+- Cadena de fallback: `localStorage("lang")` → `navigator.language` (si empieza por `en`, usar `en`) → default `es`
 - Idioma guardado en `localStorage` bajo clave `lang`
-- Idioma por defecto: `es`
-- Al cargar la página: lee `localStorage`, si no existe usa `es`
+- Al cargar la página: sigue la cadena de fallback anterior
+
+### Fallback ante fallo de carga
+
+- El HTML contiene el texto en español como contenido por defecto directamente en los elementos
+- `i18n.js` sobreescribe solo si el fetch del JSON tiene éxito
+- Si el fetch falla, la página se muestra en español sin interrupciones
 
 ### Estructura JSON (parcial)
 
@@ -116,6 +129,7 @@ Scroll continuo con las siguientes secciones en orden:
 - **Cards hover:** translateY(-4px) + border-color transition
 - **Scroll reveal:** Intersection Observer para fadeIn/slideUp al entrar en viewport
 - **Navbar:** blur + opacidad en scroll
+- **`prefers-reduced-motion`:** todas las animaciones se desactivan con `@media (prefers-reduced-motion: reduce)` para usuarios que lo configuren en su SO
 
 ### Responsive
 
@@ -130,8 +144,10 @@ Scroll continuo con las siguientes secciones en orden:
 <meta name="keywords" content="desarrollador, fullstack, java, spring boot, portfolio">
 <meta property="og:title" content="Adrián Arroyo — Fullstack Developer">
 <meta property="og:description" content="Portfolio profesional...">
-<meta property="og:image" content="assets/og-image.png">
+<meta property="og:image" content="https://<usuario>.github.io/assets/og-image.png">
+<meta property="og:url" content="https://<usuario>.github.io">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 ```
 
 `<html lang>` se actualiza dinámicamente al cambiar idioma.
@@ -147,10 +163,24 @@ Scroll continuo con las siguientes secciones en orden:
 | 5 | Mejoras ERP | Profesional | Mejoras funcionales en sistema de planificación de recursos empresariales | Java, Spring Boot, SQL |
 | 6 | Informes BIRT | Profesional | Generación de reportes empresariales | BIRT, SQL, Reporting |
 | 7 | Cloud Config | Profesional | Servidor de configuración centralizada | Spring Cloud, Microservicios |
-| 8 | Plugins Claude Code | Profesional | Skills y automatización con IA para flujos DevOps | AI, Claude, Automation |
+| 8 | Automatización DevOps con IA | Profesional | Skills y automatización con IA para flujos DevOps | AI, Claude, Automation |
 | 9 | Migración Jakarta EE | Profesional | Migración tecnológica de javax a Jakarta | Jakarta EE, Java, Refactoring |
 | 10 | Seguridad ZK | Profesional | Módulo de seguridad para framework ZK | ZK, Security, Java |
 | 11 | PetWatch | Personal | App Android de seguimiento y gestión de mascotas | Android, Java, Mobile |
+
+## Accesibilidad
+
+- HTML semántico: `<nav>`, `<main>`, `<section>`, `<footer>`, `<header>`
+- Navegación por teclado: menú hamburguesa y selector de idioma accesibles con Tab/Enter/Escape
+- ARIA: `aria-label` en botones de icono, `aria-expanded` en menú hamburguesa, `role="navigation"`
+- `prefers-reduced-motion`: desactiva todas las animaciones (partículas, hover, scroll reveal)
+- Contraste: texto secundario mínimo #999 sobre #0a0a0f (ratio ≥ 6:1)
+
+## Rendimiento
+
+- `particles.js` cargado con `defer` para no bloquear el render
+- Imágenes futuras con `loading="lazy"`
+- Objetivo: Lighthouse 90+ en mobile
 
 ## Fuera de alcance
 
@@ -159,3 +189,4 @@ Scroll continuo con las siguientes secciones en orden:
 - Animaciones 3D o WebGL
 - CMS o panel de administración
 - Analytics (se puede añadir después)
+- Página 404 con contenido elaborado (solo redirección simple a landing)
