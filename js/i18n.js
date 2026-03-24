@@ -32,9 +32,14 @@ const I18n = (() => {
       currentLang = lang;
       localStorage.setItem('lang', lang);
       applyTranslations();
+      window.dispatchEvent(new CustomEvent('i18n:loaded'));
     } catch (e) {
       console.warn('i18n: could not load ' + lang + '.json, using inline fallback');
     }
+  }
+
+  function get(key) {
+    return translations[key] || null;
   }
 
   function toggle() {
@@ -47,7 +52,7 @@ const I18n = (() => {
     loadLang(currentLang);
   }
 
-  return { init, toggle, getCurrentLang: () => currentLang };
+  return { init, toggle, get, getCurrentLang: () => currentLang };
 })();
 
 document.addEventListener('DOMContentLoaded', () => I18n.init());

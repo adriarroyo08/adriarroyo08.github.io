@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto — Adrian Arroyo</title>
+  <meta name="description" content="Detalle de proyecto — Adrian Arroyo Perez">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <nav class="navbar" role="navigation" aria-label="Navegacion principal">
+    <a href="index.html" class="logo">&lt;<span>AA</span>/&gt;</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav.about">Sobre mi</a></li>
+      <li><a href="index.html#stack" data-i18n="nav.stack">Stack</a></li>
+      <li><a href="index.html#projects" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="index.html#experience" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="index.html#contact" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" onclick="I18n.toggle()" aria-label="Cambiar idioma">EN</button>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="mobileNav" role="navigation" aria-label="Navegacion movil">
+    <a href="index.html#about" data-i18n="nav.about" onclick="closeMenu()">Sobre mi</a>
+    <a href="index.html#stack" data-i18n="nav.stack" onclick="closeMenu()">Stack</a>
+    <a href="index.html#projects" data-i18n="nav.projects" onclick="closeMenu()">Proyectos</a>
+    <a href="index.html#experience" data-i18n="nav.experience" onclick="closeMenu()">Experiencia</a>
+    <a href="index.html#contact" data-i18n="nav.contact" onclick="closeMenu()">Contacto</a>
+  </div>
+
+  <main class="section" style="padding-top: calc(var(--nav-height) + 40px);">
+    <div class="section-inner">
+      <a href="projects.html" class="back-link" data-i18n="project.detail.back">&larr; Volver a proyectos</a>
+
+      <div class="project-detail">
+        <div class="project-detail-header">
+          <div id="projectType" class="project-type"></div>
+          <h1 id="projectTitle" data-i18n-project="project.{id}.title"></h1>
+          <div id="projectTags" class="project-tags project-tags--detail"></div>
+        </div>
+
+        <p class="project-detail-overview" data-i18n-project="project.{id}.detail.overview"></p>
+
+        <div class="project-detail-sections">
+          <div class="project-detail-section">
+            <h2 data-i18n="project.detail.section.tech">Tecnologias utilizadas</h2>
+            <p data-i18n-project="project.{id}.detail.tech"></p>
+          </div>
+          <div class="project-detail-section">
+            <h2 data-i18n="project.detail.section.role">Mi rol</h2>
+            <p data-i18n-project="project.{id}.detail.role"></p>
+          </div>
+          <div class="project-detail-section">
+            <h2 data-i18n="project.detail.section.challenges">Retos tecnicos</h2>
+            <p data-i18n-project="project.{id}.detail.challenges"></p>
+          </div>
+          <div class="project-detail-section">
+            <h2 data-i18n="project.detail.section.results">Resultados e impacto</h2>
+            <p data-i18n-project="project.{id}.detail.results"></p>
+          </div>
+        </div>
+
+        <a href="projects.html" class="back-link project-detail-back" data-i18n="project.detail.back">&larr; Volver a proyectos</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer.text">Disenado y desarrollado por Adrian Arroyo Perez</p>
+  </footer>
+
+  <script>
+    (function() {
+      var id = new URLSearchParams(window.location.search).get('id');
+      var validIds = ['1','2','3','4','5','6','7','8','9','10'];
+      if (!id || validIds.indexOf(id) === -1) {
+        window.location.href = 'projects.html';
+        return;
+      }
+      var projects = {
+        '1': { type: 'profesional', tags: ['Java','Spring Security','SSO','ZK','LDAP'] },
+        '2': { type: 'profesional', tags: ['Azure DevOps','YAML','CI/CD','SonarQube','OWASP'] },
+        '3': { type: 'profesional', tags: ['Playwright','Spring Boot','QA','Automation'] },
+        '4': { type: 'profesional', tags: ['Java','XHTML','Bootstrap','Accessibility'] },
+        '5': { type: 'profesional', tags: ['Java','ZK Framework','ERP'] },
+        '6': { type: 'profesional', tags: ['BIRT','SQL','Reporting'] },
+        '7': { type: 'profesional', tags: ['Spring Cloud','Microservicios'] },
+        '8': { type: 'profesional', tags: ['Claude AI','MCP','Azure DevOps','Automation'] },
+        '9': { type: 'profesional', tags: ['Jakarta EE','Java','Refactoring'] },
+        '10': { type: 'personal', tags: ['Kotlin','WearOS','Android','Gaming'] }
+      };
+      var project = projects[id];
+
+      document.querySelectorAll('[data-i18n-project]').forEach(function(el) {
+        var template = el.getAttribute('data-i18n-project');
+        el.setAttribute('data-i18n', template.replace('{id}', id));
+      });
+
+      var typeEl = document.getElementById('projectType');
+      typeEl.className = 'project-type project-type--' + project.type;
+      typeEl.setAttribute('data-i18n', 'projects.filter.' + project.type);
+      typeEl.textContent = project.type === 'profesional' ? 'Profesional' : 'Personal';
+
+      var tagsEl = document.getElementById('projectTags');
+      project.tags.forEach(function(t) {
+        var span = document.createElement('span');
+        span.textContent = t;
+        tagsEl.appendChild(span);
+      });
+
+      window.addEventListener('i18n:loaded', function() {
+        var title = I18n.get('project.' + id + '.title');
+        if (title) document.title = title + ' \u2014 Adrian Arroyo';
+      });
+    })();
+  </script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/particles.js" defer></script>
+</body>
+</html>
