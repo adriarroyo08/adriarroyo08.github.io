@@ -1,0 +1,203 @@
+export const languages = { es: "Español", en: "English" } as const;
+export type Lang = keyof typeof languages;
+export const defaultLang: Lang = "es";
+
+// All translations
+const translations: Record<Lang, Record<string, string>> = {
+  es: {
+    // Nav
+    "nav.about": "Sobre mí",
+    "nav.stack": "Stack",
+    "nav.projects": "Proyectos",
+    "nav.ai": "IA",
+    "nav.experience": "Experiencia",
+    "nav.contact": "Contacto",
+
+    // Hero
+    "hero.tag": "Desarrollador Fullstack & AI Engineer",
+    "hero.title.pre": "Hola, soy ",
+    "hero.title.name": "Adrián Arroyo",
+    "hero.description": "Construyo software que escala, automatizo lo que otros hacen a mano, y colaboro con IA para ir más rápido y más lejos.",
+
+    // About / AI Section
+    "ai.title.pre": "Powered by ",
+    "ai.title.highlight": "IA",
+    "ai.subtitle": "La IA no es una herramienta más en mi stack. Es mi copiloto.",
+    "ai.metric1.value": "5+",
+    "ai.metric1.label": "Skills publicados",
+    "ai.metric1.sub": "en Claude Marketplace",
+    "ai.metric2.value": "10+",
+    "ai.metric2.label": "Pipelines automatizados",
+    "ai.metric2.sub": "con asistencia IA",
+    "ai.metric3.value": "100%",
+    "ai.metric3.label": "AI-First workflow",
+    "ai.metric3.sub": "desde ideación hasta deploy",
+    "ai.timeline1.date": "2024 Q4",
+    "ai.timeline1.title": "Primeros pasos con Claude Code",
+    "ai.timeline1.desc": "Automatización de tareas DevOps básicas",
+    "ai.timeline2.date": "2025 Q1",
+    "ai.timeline2.title": "MCP Servers & Custom Skills",
+    "ai.timeline2.desc": "Desarrollo de servidores MCP para Azure DevOps y herramientas custom",
+    "ai.timeline3.date": "2025 Q2",
+    "ai.timeline3.title": "AI-Driven DevOps",
+    "ai.timeline3.desc": "Reportes OWASP con IA, análisis Kibana automatizado, skills en marketplace",
+    "ai.timeline4.date": "2025 Q3",
+    "ai.timeline4.title": "Full AI Engineering",
+    "ai.timeline4.desc": "Portfolio, trading bots y apps completas construidas con Claude Code",
+    "ai.quote": "Creo que los desarrolladores que prosperarán son los que aprendan a colaborar con la IA — no solo usarla, sino pensar con ella.",
+
+    // Stack
+    "stack.title.pre": "Mi ",
+    "stack.title.highlight": "Stack",
+    "stack.subtitle": "Tecnologías con las que trabajo día a día",
+
+    // Projects
+    "projects.title.pre": "Mis ",
+    "projects.title.highlight": "Proyectos",
+    "projects.subtitle": "Una selección de lo que he construido",
+    "projects.filter.all": "Todos",
+    "projects.filter.profesional": "Profesional",
+    "projects.filter.personal": "Personal",
+    "project.1.title": "Login Abstracto",
+    "project.1.desc": "Sistema de autenticación centralizado reutilizable",
+    "project.2.title": "Pipelines CI/CD",
+    "project.2.desc": "Automatización completa en Azure DevOps",
+    "project.3.title": "Testing E2E",
+    "project.3.desc": "Framework Playwright para matriculación",
+    "project.4.title": "AI DevOps",
+    "project.4.desc": "Skills y MCPs para automatización con IA",
+    "project.5.title": "PetWatch",
+    "project.5.desc": "Juego v-pet Pokémon para WearOS y móvil",
+    "project.6.title": "AhorrApp",
+    "project.6.desc": "Comparador de precios de supermercados",
+    "project.7.title": "Trading Bot",
+    "project.7.desc": "Bot de trading automatizado con IA",
+    "project.back": "Volver a proyectos",
+    "project.readmore": "Ver detalle",
+
+    // Experience
+    "exp.title.pre": "Mi ",
+    "exp.title.highlight": "Trayectoria",
+    "exp.subtitle": "Formación y experiencia profesional",
+    "exp.job1.date": "Oct 2024 — Actualidad",
+    "exp.job1.title": "Desarrollador Fullstack",
+    "exp.job1.place": "Entorno universitario — Desarrollo web con Java, Spring Boot y ZK Framework",
+    "exp.edu1.date": "2024",
+    "exp.edu1.title": "TFG: Testing E2E",
+    "exp.edu1.place": "Framework de testing automatizado con Playwright",
+    "exp.edu2.date": "2020 — 2024",
+    "exp.edu2.title": "Grado en Ingeniería Informática",
+    "exp.edu2.place": "Universidad de Córdoba",
+    "exp.edu3.date": "2018 — 2020",
+    "exp.edu3.title": "Bachillerato",
+    "exp.edu3.place": "IES Luis de Góngora, Córdoba",
+
+    // Contact
+    "contact.title.pre": "Hablemos",
+    "contact.title.highlight": ".",
+    "contact.subtitle": "¿Interesado en trabajar juntos?",
+    "contact.cv": "Descargar CV",
+
+    // Footer
+    "footer.text": "Diseñado y desarrollado por Adrián Arroyo Pérez",
+    "footer.built": "Built with Astro + React + Three.js + Claude Code",
+  },
+  en: {
+    "nav.about": "About",
+    "nav.stack": "Stack",
+    "nav.projects": "Projects",
+    "nav.ai": "AI",
+    "nav.experience": "Experience",
+    "nav.contact": "Contact",
+
+    "hero.tag": "Fullstack Developer & AI Engineer",
+    "hero.title.pre": "Hi, I'm ",
+    "hero.title.name": "Adrián Arroyo",
+    "hero.description": "I build software that scales, automate what others do by hand, and collaborate with AI to go faster and further.",
+
+    "ai.title.pre": "Powered by ",
+    "ai.title.highlight": "AI",
+    "ai.subtitle": "AI is not just another tool in my stack. It's my co-pilot.",
+    "ai.metric1.value": "5+",
+    "ai.metric1.label": "Published skills",
+    "ai.metric1.sub": "on Claude Marketplace",
+    "ai.metric2.value": "10+",
+    "ai.metric2.label": "Automated pipelines",
+    "ai.metric2.sub": "with AI assistance",
+    "ai.metric3.value": "100%",
+    "ai.metric3.label": "AI-First workflow",
+    "ai.metric3.sub": "from ideation to deploy",
+    "ai.timeline1.date": "2024 Q4",
+    "ai.timeline1.title": "First steps with Claude Code",
+    "ai.timeline1.desc": "Basic DevOps task automation",
+    "ai.timeline2.date": "2025 Q1",
+    "ai.timeline2.title": "MCP Servers & Custom Skills",
+    "ai.timeline2.desc": "MCP servers for Azure DevOps and custom tools",
+    "ai.timeline3.date": "2025 Q2",
+    "ai.timeline3.title": "AI-Driven DevOps",
+    "ai.timeline3.desc": "OWASP reports with AI, automated Kibana analysis, marketplace skills",
+    "ai.timeline4.date": "2025 Q3",
+    "ai.timeline4.title": "Full AI Engineering",
+    "ai.timeline4.desc": "Portfolio, trading bots and full apps built with Claude Code",
+    "ai.quote": "I believe the developers who will thrive are those who learn to collaborate with AI — not just use it, but think with it.",
+
+    "stack.title.pre": "My ",
+    "stack.title.highlight": "Stack",
+    "stack.subtitle": "Technologies I work with daily",
+
+    "projects.title.pre": "My ",
+    "projects.title.highlight": "Projects",
+    "projects.subtitle": "A selection of what I've built",
+    "projects.filter.all": "All",
+    "projects.filter.profesional": "Professional",
+    "projects.filter.personal": "Personal",
+    "project.1.title": "Abstract Login",
+    "project.1.desc": "Centralized reusable authentication system",
+    "project.2.title": "CI/CD Pipelines",
+    "project.2.desc": "Full automation in Azure DevOps",
+    "project.3.title": "E2E Testing",
+    "project.3.desc": "Playwright framework for enrollment",
+    "project.4.title": "AI DevOps",
+    "project.4.desc": "Skills and MCPs for AI-driven automation",
+    "project.5.title": "PetWatch",
+    "project.5.desc": "Pokémon v-pet game for WearOS and mobile",
+    "project.6.title": "AhorrApp",
+    "project.6.desc": "Supermarket price comparison app",
+    "project.7.title": "Trading Bot",
+    "project.7.desc": "AI-powered automated trading bot",
+    "project.back": "Back to projects",
+    "project.readmore": "View details",
+
+    "exp.title.pre": "My ",
+    "exp.title.highlight": "Journey",
+    "exp.subtitle": "Education and professional experience",
+    "exp.job1.date": "Oct 2024 — Present",
+    "exp.job1.title": "Fullstack Developer",
+    "exp.job1.place": "University environment — Web development with Java, Spring Boot and ZK Framework",
+    "exp.edu1.date": "2024",
+    "exp.edu1.title": "Thesis: E2E Testing",
+    "exp.edu1.place": "Automated testing framework with Playwright",
+    "exp.edu2.date": "2020 — 2024",
+    "exp.edu2.title": "Bachelor's in Computer Engineering",
+    "exp.edu2.place": "University of Córdoba",
+    "exp.edu3.date": "2018 — 2020",
+    "exp.edu3.title": "High School Diploma",
+    "exp.edu3.place": "IES Luis de Góngora, Córdoba",
+
+    "contact.title.pre": "Let's talk",
+    "contact.title.highlight": ".",
+    "contact.subtitle": "Interested in working together?",
+    "contact.cv": "Download CV",
+
+    "footer.text": "Designed and developed by Adrián Arroyo Pérez",
+    "footer.built": "Built with Astro + React + Three.js + Claude Code",
+  },
+};
+
+export function t(lang: Lang, key: string): string {
+  return translations[lang]?.[key] ?? translations[defaultLang]?.[key] ?? key;
+}
+
+export function getTranslations(lang: Lang): Record<string, string> {
+  return translations[lang] ?? translations[defaultLang];
+}

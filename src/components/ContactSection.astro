@@ -33,6 +33,7 @@ const contacts = [
     value: "Descargar CV",
     href: "/cv.pdf",
     download: true,
+    i18n: "contact.cv",
     icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="4" y="2" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
       <line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -46,9 +47,9 @@ const contacts = [
 <section id="contact" class="reveal py-24 px-6 max-w-4xl mx-auto">
   <div class="text-center mb-16">
     <h2 class="text-4xl font-bold mb-4">
-      Hablemos<span class="gradient-text">.</span>
+      <span data-i18n="contact.title.pre">Hablemos</span><span class="gradient-text" data-i18n="contact.title.highlight">.</span>
     </h2>
-    <p class="text-zinc-400 text-lg">Interesado en trabajar juntos?</p>
+    <p class="text-zinc-400 text-lg" data-i18n="contact.subtitle">Interesado en trabajar juntos?</p>
   </div>
 
   <div class="flex flex-wrap justify-center gap-4">
@@ -63,13 +64,87 @@ const contacts = [
         <span class="text-emerald-400 group-hover:scale-110 transition-transform duration-200 flex-shrink-0" set:html={contact.icon} />
         <div>
           <p class="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{contact.label}</p>
-          <p class="text-sm font-medium text-zinc-200 group-hover:text-emerald-400 transition-colors duration-200">
+          <p class="text-sm font-medium text-zinc-200 group-hover:text-emerald-400 transition-colors duration-200" data-i18n={contact.i18n}>
             {contact.value}
           </p>
         </div>
       </a>
     ))}
   </div>
+
+  <!-- Divider -->
+  <div class="flex items-center gap-4 mt-16 mb-10 max-w-xl mx-auto">
+    <div class="flex-1 h-px bg-white/10"></div>
+    <p class="text-zinc-400 text-sm whitespace-nowrap" data-i18n="contact.form.divider">O envíame un mensaje</p>
+    <div class="flex-1 h-px bg-white/10"></div>
+  </div>
+
+  <!-- Contact form
+       Replace 'placeholder' in the action URL with your Formspree form ID.
+       Get a free form ID at https://formspree.io (free tier: 50 submissions/month).
+       Alternative: change the action to "mailto:adriarroyo2002@gmail.com"
+       and add method="post" enctype="text/plain" for a basic mailto fallback.
+  -->
+  <form
+    id="contact-form"
+    action="https://formspree.io/f/xzzezkrw"
+    method="POST"
+    class="max-w-xl mx-auto flex flex-col gap-4"
+    novalidate
+  >
+    <div class="flex flex-col gap-1">
+      <label for="cf-name" class="text-xs text-zinc-400 uppercase tracking-wider" data-i18n="contact.form.name">Nombre</label>
+      <input
+        id="cf-name"
+        type="text"
+        name="name"
+        required
+        placeholder="Tu nombre"
+        class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-500 text-sm focus:border-[#00ff88]/50 focus:outline-none transition-colors duration-200"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="cf-email" class="text-xs text-zinc-400 uppercase tracking-wider" data-i18n="contact.form.email">Email</label>
+      <input
+        id="cf-email"
+        type="email"
+        name="email"
+        required
+        placeholder="tu@email.com"
+        class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-500 text-sm focus:border-[#00ff88]/50 focus:outline-none transition-colors duration-200"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="cf-message" class="text-xs text-zinc-400 uppercase tracking-wider" data-i18n="contact.form.message">Mensaje</label>
+      <textarea
+        id="cf-message"
+        name="message"
+        required
+        rows="5"
+        placeholder="Cuéntame en qué puedo ayudarte..."
+        class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-500 text-sm focus:border-[#00ff88]/50 focus:outline-none transition-colors duration-200 resize-none"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      id="cf-submit"
+      class="contact-submit mt-2 px-8 py-3 rounded-lg text-sm font-semibold text-black transition-all duration-200 self-end"
+      data-i18n="contact.form.submit"
+    >
+      Enviar mensaje
+    </button>
+
+    <!-- Status messages -->
+    <p id="cf-success" class="hidden text-center text-sm text-emerald-400 py-2" data-i18n="contact.form.success">
+      ¡Mensaje enviado! Te responderé lo antes posible.
+    </p>
+    <p id="cf-error" class="hidden text-center text-sm text-red-400 py-2" data-i18n="contact.form.error">
+      Algo salió mal. Por favor, inténtalo de nuevo.
+    </p>
+  </form>
 
   <p class="text-center text-zinc-600 text-sm mt-16">
     Hecho con Astro &amp; Three.js &mdash; {new Date().getFullYear()}
@@ -85,4 +160,67 @@ const contacts = [
   .contact-card:hover {
     transform: translateY(-2px);
   }
+
+  .contact-submit {
+    background: linear-gradient(135deg, #00ff88 0%, #00c6ff 100%);
+  }
+
+  .contact-submit:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.25);
+  }
+
+  .contact-submit:active {
+    transform: translateY(0);
+  }
+
+  .contact-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+  const successMsg = document.getElementById('cf-success');
+  const errorMsg = document.getElementById('cf-error');
+
+  if (form && submitBtn && successMsg && errorMsg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide previous status messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+
+      // Disable button while submitting
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent ?? 'Enviar mensaje';
+      submitBtn.textContent = 'Enviando…';
+
+      try {
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (response.ok) {
+          form.reset();
+          successMsg.classList.remove('hidden');
+        } else {
+          errorMsg.classList.remove('hidden');
+        }
+      } catch {
+        errorMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+</script>

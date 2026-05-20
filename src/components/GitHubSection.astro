@@ -1,0 +1,14 @@
+---
+import GitHubActivity from './GitHubActivity.tsx';
+---
+
+<section id="github" class="py-20 px-6">
+  <div class="max-w-5xl mx-auto reveal">
+    <h2 class="text-3xl font-bold mb-3">
+      <span data-i18n="github.title.pre">Actividad en </span>
+      <span class="gradient-text" data-i18n="github.title.highlight">GitHub</span>
+    </h2>
+    <p class="text-zinc-500 text-base mb-10" data-i18n="github.subtitle">Lo que estoy construyendo ahora mismo</p>
+    <GitHubActivity client:visible />
+  </div>
+</section>

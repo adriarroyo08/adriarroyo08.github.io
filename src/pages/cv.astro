@@ -1,0 +1,319 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout
+  title="CV — Adrian Arroyo Perez | Fullstack Developer & AI Engineer"
+  description="Curriculum Vitae de Adrian Arroyo Perez — Desarrollador Fullstack especializado en Java, Spring Boot, AI y automatizacion"
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-[#0a0a0f] pt-24 pb-16 px-4 print:pt-0 print:pb-0 print:bg-white">
+    <!-- Print / Download controls -->
+    <div class="no-print max-w-3xl mx-auto flex justify-end gap-3 mb-6">
+      <a
+        href="/assets/cv-adrian-arroyo.pdf"
+        download
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#00ff88]/40 bg-[#00ff88]/10
+               text-[#00ff88] text-sm font-medium hover:bg-[#00ff88]/20 transition-all duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar PDF
+      </a>
+      <button
+        onclick="window.print()"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/5
+               text-white/70 text-sm font-medium hover:bg-white/10 hover:text-white transition-all duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        Imprimir
+      </button>
+    </div>
+
+    <!-- CV Card -->
+    <article class="max-w-3xl mx-auto bg-[#111118] border border-white/[0.06] rounded-2xl overflow-hidden
+                    shadow-2xl shadow-black/50 print:shadow-none print:border-0 print:rounded-none print:bg-white print:max-w-none">
+
+      <!-- ── HEADER ── -->
+      <header class="px-8 py-10 border-b border-white/[0.06] print:border-gray-200 print:pb-6">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white print:text-gray-900 mb-1">
+              Adrian Arroyo Perez
+            </h1>
+            <p class="text-lg font-medium bg-gradient-to-r from-[#00ff88] to-[#00aaff] bg-clip-text text-transparent print:text-blue-700 mb-4">
+              Fullstack Developer &amp; AI Engineer
+            </p>
+
+            <!-- Contact chips -->
+            <div class="flex flex-wrap gap-3 text-sm text-white/60 print:text-gray-600">
+              <span class="flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Cordoba, Spain
+              </span>
+              <a href="mailto:adriarroyo2002@gmail.com"
+                 class="flex items-center gap-1.5 hover:text-[#00ff88] transition-colors print:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                adriarroyo2002@gmail.com
+              </a>
+              <a href="https://github.com/adriarroyo08" target="_blank" rel="noopener"
+                 class="flex items-center gap-1.5 hover:text-[#00ff88] transition-colors print:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
+                           0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755
+                           -1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305
+                           3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38
+                           1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399
+                           3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24
+                           2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81
+                           1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24
+                           17.295 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                adriarroyo08
+              </a>
+              <a href="https://linkedin.com/in/adriarroyo08" target="_blank" rel="noopener"
+                 class="flex items-center gap-1.5 hover:text-[#00ff88] transition-colors print:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136
+                           1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85
+                           3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062
+                           0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225
+                           0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2
+                           24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <!-- Monogram badge -->
+          <div class="no-print shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#00ff88]/20 to-[#00aaff]/20
+                      border border-white/10 flex items-center justify-center">
+            <span class="font-mono text-2xl font-bold bg-gradient-to-r from-[#00ff88] to-[#00aaff]
+                         bg-clip-text text-transparent">AA</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="px-8 py-8 space-y-8 print:space-y-6 print:text-gray-900">
+
+        <!-- ── SUMMARY ── -->
+        <section>
+          <h2 class="cv-section-title">Perfil Profesional</h2>
+          <p class="text-white/70 leading-relaxed text-sm print:text-gray-700">
+            Ingeniero informatico y desarrollador fullstack con experiencia en entornos universitarios.
+            Especializado en Java, Spring Boot, automatizacion CI/CD e integracion de IA en flujos de desarrollo.
+          </p>
+        </section>
+
+        <!-- ── EXPERIENCE ── -->
+        <section>
+          <h2 class="cv-section-title">Experiencia</h2>
+          <div class="space-y-4">
+            <div class="cv-card">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
+                <div>
+                  <h3 class="font-semibold text-white print:text-gray-900">Desarrollador Fullstack</h3>
+                  <p class="text-[#00ff88] text-sm print:text-blue-700 font-medium">Entorno universitario</p>
+                </div>
+                <span class="text-xs text-white/40 print:text-gray-500 shrink-0 font-mono pt-0.5">
+                  Oct 2024 — Actualidad
+                </span>
+              </div>
+              <ul class="space-y-1.5">
+                <li class="cv-bullet">Desarrollo y mantenimiento de aplicaciones web con Java, Spring Boot y ZK Framework</li>
+                <li class="cv-bullet">Diseño e implementacion de infraestructura CI/CD en Azure DevOps</li>
+                <li class="cv-bullet">Integracion de IA (Claude Code) en flujos de trabajo DevOps</li>
+                <li class="cv-bullet">Testing E2E automatizado con Playwright</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── EDUCATION ── -->
+        <section>
+          <h2 class="cv-section-title">Educacion</h2>
+          <div class="space-y-4">
+            <div class="cv-card">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+                <div>
+                  <h3 class="font-semibold text-white print:text-gray-900">Grado en Ingenieria Informatica</h3>
+                  <p class="text-[#00ff88] text-sm print:text-blue-700 font-medium">Universidad de Cordoba</p>
+                </div>
+                <span class="text-xs text-white/40 print:text-gray-500 shrink-0 font-mono pt-0.5">
+                  2020 — 2024
+                </span>
+              </div>
+              <p class="text-white/50 text-sm print:text-gray-600 italic">
+                TFG: Framework de testing E2E automatizado con Playwright
+              </p>
+            </div>
+
+            <div class="cv-card">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                <div>
+                  <h3 class="font-semibold text-white print:text-gray-900">Bachillerato</h3>
+                  <p class="text-[#00ff88] text-sm print:text-blue-700 font-medium">IES Luis de Gongora</p>
+                </div>
+                <span class="text-xs text-white/40 print:text-gray-500 shrink-0 font-mono pt-0.5">
+                  2018 — 2020
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── SKILLS ── -->
+        <section>
+          <h2 class="cv-section-title">Habilidades Tecnicas</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { area: 'Backend',   items: 'Java, Spring Boot, Python, Kotlin' },
+              { area: 'DevOps',    items: 'Azure DevOps, Docker, CI/CD, Linux' },
+              { area: 'IA',        items: 'Claude Code, MCP Servers, Custom Skills' },
+              { area: 'Frontend',  items: 'HTML/CSS, JavaScript, React, Astro' },
+              { area: 'Testing',   items: 'Playwright, JUnit, E2E' },
+              { area: 'Database',  items: 'SQL, SQLite, PostgreSQL' },
+            ].map(({ area, items }) => (
+              <div class="cv-card flex items-start gap-3">
+                <span class="shrink-0 mt-0.5 w-2 h-2 rounded-full bg-gradient-to-br from-[#00ff88] to-[#00aaff] print:bg-blue-600"></span>
+                <div>
+                  <span class="text-xs font-semibold text-white/40 print:text-gray-500 uppercase tracking-wider">{area}</span>
+                  <p class="text-sm text-white/80 print:text-gray-800 mt-0.5">{items}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── PROJECTS ── -->
+        <section>
+          <h2 class="cv-section-title">Proyectos Destacados</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { name: 'Login Abstracto',  desc: 'Sistema de autenticacion centralizado',  tech: 'Java, Spring Security' },
+              { name: 'CI/CD Pipelines',  desc: 'Automatizacion en Azure DevOps',         tech: 'Azure DevOps, YAML' },
+              { name: 'AI DevOps',        desc: 'Skills y MCPs para automatizacion con IA', tech: 'Claude Code, MCP' },
+              { name: 'PetWatch',         desc: 'Juego v-pet Pokemon para WearOS',        tech: 'Kotlin, Compose' },
+              { name: 'AhorrApp',         desc: 'Comparador de precios de supermercados', tech: 'React Native, FastAPI' },
+            ].map(({ name, desc, tech }) => (
+              <div class="cv-card group">
+                <h3 class="font-semibold text-white print:text-gray-900 text-sm mb-0.5">{name}</h3>
+                <p class="text-white/55 print:text-gray-600 text-xs mb-1.5">{desc}</p>
+                <span class="inline-block px-2 py-0.5 rounded-md bg-white/5 print:bg-gray-100 border border-white/10
+                             print:border-gray-200 text-[11px] font-mono text-white/40 print:text-gray-500">{tech}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── LANGUAGES ── -->
+        <section>
+          <h2 class="cv-section-title">Idiomas</h2>
+          <div class="flex flex-wrap gap-3">
+            <div class="cv-card flex items-center gap-3 flex-1 min-w-[140px]">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00ff88]/20 to-[#00aaff]/20
+                          border border-white/10 flex items-center justify-center text-sm print:hidden">
+                ES
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-white print:text-gray-900">Espanol</p>
+                <p class="text-xs text-white/40 print:text-gray-500">Nativo</p>
+              </div>
+            </div>
+            <div class="cv-card flex items-center gap-3 flex-1 min-w-[140px]">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00ff88]/20 to-[#00aaff]/20
+                          border border-white/10 flex items-center justify-center text-sm print:hidden">
+                EN
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-white print:text-gray-900">Ingles</p>
+                <p class="text-xs text-white/40 print:text-gray-500">B2</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /inner padding -->
+    </article>
+  </main>
+
+</Layout>
+
+<style is:global>
+  .cv-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #00ff88, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cv-card {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    padding: 1rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cv-card:hover {
+    border-color: rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .cv-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .cv-bullet::before {
+    content: '›';
+    color: #00ff88;
+    flex-shrink: 0;
+    font-weight: 700;
+    line-height: 1.625;
+  }
+
+  @media print {
+    .no-print { display: none !important; }
+    body { background: white !important; color: #111 !important; }
+    .cv-section-title {
+      background: none !important;
+      -webkit-text-fill-color: #1d4ed8 !important;
+      color: #1d4ed8 !important;
+    }
+    .cv-card {
+      border: 1px solid #e5e7eb !important;
+      background: transparent !important;
+    }
+    .cv-bullet { color: #374151 !important; }
+    .cv-bullet::before { color: #1d4ed8 !important; }
+    section { break-inside: avoid; }
+    .cv-card { break-inside: avoid; }
+  }
+</style>

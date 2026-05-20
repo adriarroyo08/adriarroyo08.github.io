@@ -1,0 +1,16 @@
+{
+  "name": "Adrian Arroyo — Portfolio",
+  "short_name": "AA Portfolio",
+  "description": "Portfolio de Adrian Arroyo Perez — Fullstack Developer & AI Engineer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00ff88",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
