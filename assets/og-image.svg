@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#0f1118"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="50%" stop-color="#00bbff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="25%" cy="40%">
+      <stop offset="0%" stop-color="rgba(0,255,136,0.12)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="75%" cy="60%">
+      <stop offset="0%" stop-color="rgba(0,187,255,0.08)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#grad)"/>
+  <text x="100" y="200" font-family="'Segoe UI',system-ui,sans-serif" font-size="28" font-weight="800" fill="#00ff88" opacity="0.9">&lt;AA/&gt;</text>
+  <text x="100" y="310" font-family="'Segoe UI',system-ui,sans-serif" font-size="72" font-weight="800" fill="#e0e0e0">Adrian Arroyo</text>
+  <text x="100" y="390" font-family="'Segoe UI',system-ui,sans-serif" font-size="32" fill="#999">Fullstack Developer</text>
+  <text x="100" y="460" font-family="'Segoe UI',system-ui,sans-serif" font-size="22" fill="#666">Java  ·  Spring Boot  ·  CI/CD  ·  AI Automation</text>
+  <rect x="100" y="510" width="200" height="4" rx="2" fill="url(#grad)"/>
+  <text x="100" y="560" font-family="'Segoe UI',system-ui,sans-serif" font-size="18" fill="#444">adriarroyo08.github.io</text>
+</svg>

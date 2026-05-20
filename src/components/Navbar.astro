@@ -1,0 +1,195 @@
+---
+// No props needed
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 h-18 flex items-center justify-between px-6 md:px-12
+         bg-[#0a0a0f]/85 backdrop-blur-md border-b border-white/[0.06] transition-all duration-300"
+  style="height: 72px;"
+>
+  <!-- Logo -->
+  <a href="/" class="flex items-center shrink-0 select-none">
+    <span class="font-mono text-xl font-bold text-white">&lt;</span>
+    <span
+      class="font-mono text-xl font-bold bg-gradient-to-r from-[#00ff88] to-[#00aaff] bg-clip-text text-transparent"
+    >AA</span>
+    <span class="font-mono text-xl font-bold text-white">/&gt;</span>
+  </a>
+
+  <!-- Desktop nav links -->
+  <ul class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+    {[
+      { label: "About",      href: "#about"      },
+      { label: "Stack",      href: "#stack"      },
+      { label: "Projects",   href: "#projects"   },
+      { label: "AI",         href: "#ai"         },
+      { label: "Experience", href: "#experience" },
+      { label: "Contact",    href: "#contact"    },
+    ].map(({ label, href }) => (
+      <li>
+        <a
+          href={href}
+          class="text-white/70 hover:text-[#00ff88] transition-colors duration-200 relative
+                 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0
+                 after:bg-[#00ff88] after:transition-all after:duration-200
+                 hover:after:w-full"
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Right: lang toggle + hamburger -->
+  <div class="flex items-center gap-3">
+    <!-- Language toggle -->
+    <button
+      id="lang-toggle"
+      onclick="typeof I18n !== 'undefined' && I18n.toggle()"
+      class="hidden md:inline-flex items-center justify-center px-3 py-1.5 rounded-full
+             border border-white/20 text-white/70 text-xs font-semibold tracking-widest
+             hover:border-[#00ff88]/60 hover:text-[#00ff88] transition-all duration-200
+             cursor-pointer select-none"
+      aria-label="Toggle language"
+    >
+      EN
+    </button>
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      id="hamburger"
+      class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5
+             rounded-md border border-white/10 hover:border-white/30 transition-colors duration-200
+             cursor-pointer"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile fullscreen overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-[#0a0a0f]/97 backdrop-blur-xl flex flex-col items-center justify-center
+         opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  <ul class="flex flex-col items-center gap-8 text-center">
+    {[
+      { label: "About",      href: "#about"      },
+      { label: "Stack",      href: "#stack"      },
+      { label: "Projects",   href: "#projects"   },
+      { label: "AI",         href: "#ai"         },
+      { label: "Experience", href: "#experience" },
+      { label: "Contact",    href: "#contact"    },
+    ].map(({ label, href }) => (
+      <li>
+        <a
+          href={href}
+          class="mobile-nav-link text-3xl font-semibold text-white/80 hover:text-[#00ff88]
+                 transition-colors duration-200 tracking-wide"
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Lang toggle inside mobile menu -->
+  <button
+    onclick="typeof I18n !== 'undefined' && I18n.toggle()"
+    class="mt-12 inline-flex items-center justify-center px-5 py-2 rounded-full
+           border border-white/20 text-white/70 text-sm font-semibold tracking-widest
+           hover:border-[#00ff88]/60 hover:text-[#00ff88] transition-all duration-200
+           cursor-pointer"
+    aria-label="Toggle language"
+  >
+    EN / ES
+  </button>
+</div>
+
+<script>
+  // ── Scroll effect ──────────────────────────────────────────────────────────
+  const navbar = document.getElementById("navbar");
+
+  function handleScroll() {
+    if (!navbar) return;
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // run once on load
+
+  // ── Hamburger / mobile menu ────────────────────────────────────────────────
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerLines = document.querySelectorAll<HTMLElement>(".hamburger-line");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  let menuOpen = false;
+
+  function openMenu() {
+    menuOpen = true;
+    hamburger?.setAttribute("aria-expanded", "true");
+    mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // Animate lines into X
+    if (hamburgerLines[0]) {
+      hamburgerLines[0].style.transform = "translateY(5px) rotate(45deg)";
+    }
+    if (hamburgerLines[1]) {
+      hamburgerLines[1].style.opacity = "0";
+      hamburgerLines[1].style.transform = "scaleX(0)";
+    }
+    if (hamburgerLines[2]) {
+      hamburgerLines[2].style.transform = "translateY(-9px) rotate(-45deg)";
+    }
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    hamburger?.setAttribute("aria-expanded", "false");
+    mobileMenu?.classList.add("opacity-0", "pointer-events-none");
+    mobileMenu?.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    // Reset lines
+    hamburgerLines.forEach((line) => {
+      line.style.transform = "";
+      line.style.opacity = "";
+    });
+  }
+
+  hamburger?.addEventListener("click", () => {
+    menuOpen ? closeMenu() : openMenu();
+  });
+
+  // Close menu when a nav link is clicked
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuOpen) closeMenu();
+  });
+</script>
+
+<style>
+  /* "scrolled" state: slightly more opaque shadow */
+  #navbar.scrolled {
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
+    background-color: rgba(10, 10, 15, 0.95);
+  }
+</style>

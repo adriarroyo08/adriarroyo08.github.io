@@ -1,21 +1,43 @@
-# Portfolio — Adrián Arroyo Pérez
+# Portfolio — Adrian Arroyo Perez
 
-Personal portfolio website showcasing my professional experience, projects, and technical skills.
+Interactive developer portfolio with terminal-driven hero, 3D particle background, and AI-first narrative.
 
 ## Tech Stack
 
-- HTML5 + CSS3 + JavaScript (vanilla)
-- JSON-based i18n (ES/EN)
-- GitHub Pages
+- **Astro 5** — Static site generator with island architecture
+- **React** — Interactive components (Terminal, Particles)
+- **Three.js** — 3D particle background with mouse parallax
+- **Tailwind CSS v4** — Utility-first styling
+- **TypeScript** — Type safety throughout
 
-## Local Development
+## Features
 
-Open `index.html` in a browser. For i18n to work via fetch, use a local server:
+- Interactive terminal in the hero (type `help` to explore)
+- 3D particle field with mouse interaction
+- "Powered by AI" section showcasing AI-driven workflow
+- Responsive design with mobile hamburger menu
+- GitHub Pages deployment via GitHub Actions
+- Can also be served via Caddy on a custom server
+
+## Development
 
 ```bash
-npx serve .
+npm install
+npm run dev      # Start dev server at localhost:4321
+npm run build    # Build to ./dist/
+npm run preview  # Preview production build
 ```
 
 ## Deployment
 
-Hosted on GitHub Pages from the `main` branch.
+**GitHub Pages:** Push to `main` — GitHub Actions builds and deploys automatically.
+
+**Custom server (Caddy):**
+```bash
+npm run build
+caddy start --config /etc/caddy/Caddyfile
+```
+
+## Built With
+
+Designed and developed by Adrian Arroyo Perez, powered by Claude Code.
