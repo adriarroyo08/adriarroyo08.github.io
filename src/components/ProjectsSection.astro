@@ -1,121 +1,158 @@
 ---
-import { projects } from '../data/projects';
+const projects = [
+  {
+    title: "Login Abstracto",
+    type: "profesional",
+    description: "Sistema de autenticacion centralizado reutilizable para multiples aplicaciones universitarias con SSO integrado.",
+    tags: ["Java", "Spring", "SSO"],
+    accent: "#00f0ff",
+  },
+  {
+    title: "CI/CD Pipelines",
+    type: "profesional",
+    description: "Automatizacion completa del ciclo de vida del software en Azure DevOps con deploys zero-downtime.",
+    tags: ["Azure DevOps", "YAML", "CI/CD"],
+    accent: "#39ff14",
+  },
+  {
+    title: "Testing E2E",
+    type: "profesional",
+    description: "Framework Playwright para testing automatizado de matriculacion con cobertura completa.",
+    tags: ["Playwright", "QA", "Spring Boot"],
+    accent: "#bf5af2",
+  },
+  {
+    title: "AI DevOps",
+    type: "profesional",
+    description: "Skills y MCPs para automatizacion de DevOps con IA — reportes OWASP, analisis Kibana, workflows inteligentes.",
+    tags: ["Claude AI", "MCP", "Automation"],
+    accent: "#ff2d78",
+  },
+  {
+    title: "PetWatch",
+    type: "personal",
+    description: "Juego v-pet Pokemon para WearOS y movil con sistema de cuidados, batallas y evolucion en tiempo real.",
+    tags: ["Kotlin", "WearOS", "Gaming"],
+    accent: "#ff6b35",
+  },
+  {
+    title: "AhorrApp",
+    type: "personal",
+    description: "Comparador de precios de supermercados espanoles con scraping automatizado y alertas inteligentes.",
+    tags: ["React Native", "Python", "FastAPI"],
+    accent: "#00f0ff",
+  },
+  {
+    title: "Trading Bot",
+    type: "personal",
+    description: "Bot de trading automatizado con estrategias basadas en indicadores tecnicos y senales por Telegram.",
+    tags: ["Python", "Freqtrade", "Telegram"],
+    accent: "#39ff14",
+  },
+];
 ---
 
-<section id="projects" class="reveal py-24 px-6 max-w-6xl mx-auto">
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-bold mb-4">
-      <span data-i18n="projects.title.pre">Mis </span><span class="gradient-text" data-i18n="projects.title.highlight">Proyectos</span>
-    </h2>
-    <p class="text-zinc-400 text-lg" data-i18n="projects.subtitle">Una seleccion de lo que he construido</p>
-  </div>
+<section id="projects" class="reveal py-28 px-6 relative">
+  <div class="absolute top-20 right-0 w-72 h-72 rounded-full opacity-8 pointer-events-none"
+       style="background: radial-gradient(circle, #bf5af2, transparent 70%); filter: blur(100px); animation: breathe 9s ease-in-out infinite;"></div>
 
-  <!-- Filter buttons -->
-  <div class="flex justify-center gap-3 mb-12 flex-wrap">
-    <button
-      class="filter-btn active px-5 py-2 rounded-full text-sm font-medium transition-all duration-200"
-      data-filter="todos"
-      data-i18n="projects.filter.all"
-    >
-      Todos
-    </button>
-    <button
-      class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200"
-      data-filter="profesional"
-      data-i18n="projects.filter.profesional"
-    >
-      Profesional
-    </button>
-    <button
-      class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200"
-      data-filter="personal"
-      data-i18n="projects.filter.personal"
-    >
-      Personal
-    </button>
-  </div>
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+            style="font-family: var(--font-mono); color: #bf5af2; border-color: rgba(191,90,242,0.2); background: rgba(191,90,242,0.05);">
+        Portfolio
+      </span>
+      <h2 class="section-title text-4xl md:text-6xl mb-5">
+        Mis <span class="gradient-text">Proyectos</span>
+      </h2>
+      <p class="section-subtitle text-lg">Una seleccion de lo que he construido</p>
+    </div>
 
-  <!-- Projects grid -->
-  <div class="grid gap-6" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
-    {projects.map((project) => (
-      <a
-        href={`/projects/${project.id}`}
-        class="card project-card p-6 flex flex-col gap-4 group"
-        data-type={project.type}
-      >
-        <!-- Type badge -->
-        <div>
-          {project.type === "profesional" ? (
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/15 text-blue-400 border border-blue-500/25">
-              <span data-i18n="projects.filter.profesional">Profesional</span>
-            </span>
-          ) : (
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/15 text-purple-400 border border-purple-500/25">
-              <span data-i18n="projects.filter.personal">Personal</span>
-            </span>
-          )}
-        </div>
-
-        <!-- Title -->
-        <h3
-          class="text-xl font-bold text-zinc-100 group-hover:text-[#00ff88] transition-colors"
-          data-i18n-es={project.title}
-          data-i18n-en={project.titleEn}
+    <!-- Filter buttons -->
+    <div class="flex justify-center gap-3 mb-14 flex-wrap">
+      {["todos", "profesional", "personal"].map((filter) => (
+        <button
+          class={`filter-btn px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer ${filter === 'todos' ? 'active' : ''}`}
+          data-filter={filter}
+          style="font-family: var(--font-mono);"
         >
-          {project.title}
-        </h3>
+          {filter === 'todos' ? 'Todos' : filter === 'profesional' ? 'Profesional' : 'Personal'}
+        </button>
+      ))}
+    </div>
 
-        <!-- Description -->
-        <p
-          class="text-sm text-zinc-400 leading-relaxed flex-1"
-          data-i18n-es={project.desc}
-          data-i18n-en={project.descEn}
+    <!-- Projects grid -->
+    <div class="grid gap-6" style="grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));">
+      {projects.map((project) => (
+        <div
+          class="card project-card p-7 flex flex-col gap-5 group"
+          data-type={project.type}
         >
-          {project.desc}
-        </p>
+          <!-- Top accent line -->
+          <div class="h-px w-16 rounded-full transition-all duration-500 group-hover:w-full"
+               style={`background: ${project.accent};`}></div>
 
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2 mt-auto">
-          {project.tags.map((tag) => (
-            <span class="px-2 py-1 rounded text-xs text-zinc-400 bg-zinc-800 border border-zinc-700">
-              {tag}
-            </span>
-          ))}
-        </div>
+          <!-- Type badge -->
+          <div>
+            {project.type === "profesional" ? (
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+                    style="background: rgba(0,240,255,0.08); color: #00f0ff; border: 1px solid rgba(0,240,255,0.15);">
+                <span class="w-1 h-1 rounded-full bg-[#00f0ff]"></span>
+                Profesional
+              </span>
+            ) : (
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+                    style="background: rgba(191,90,242,0.08); color: #bf5af2; border: 1px solid rgba(191,90,242,0.15);">
+                <span class="w-1 h-1 rounded-full bg-[#bf5af2]"></span>
+                Personal
+              </span>
+            )}
+          </div>
 
-        <!-- Read more indicator -->
-        <div class="flex items-center gap-1 text-xs text-zinc-500 group-hover:text-[#00ff88] transition-colors mt-1">
-          <span data-i18n="project.readmore">Ver detalle</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          <!-- Title -->
+          <h3 class="text-xl font-bold" style="font-family: var(--font-display); color: var(--color-text-primary);">
+            {project.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-sm leading-relaxed flex-1" style="color: var(--color-text-secondary);">
+            {project.description}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mt-auto">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
         </div>
-      </a>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
   .filter-btn {
     background: transparent;
-    border: 1px solid rgb(63 63 70);
-    color: rgb(161 161 170);
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-muted);
   }
 
   .filter-btn:hover {
-    border-color: rgb(52 211 153);
-    color: rgb(52 211 153);
+    border-color: rgba(0, 240, 255, 0.3);
+    color: #00f0ff;
+    background: rgba(0, 240, 255, 0.04);
   }
 
   .filter-btn.active {
-    background: linear-gradient(135deg, #00dc82, #36e4da);
-    border-color: transparent;
-    color: #0a0a0a;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(57, 255, 20, 0.1));
+    border-color: rgba(0, 240, 255, 0.3);
+    color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
   }
 
   .project-card {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
   .project-card.hidden {
@@ -130,12 +167,8 @@ import { projects } from '../data/projects';
   filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
-
-      // Update active button
       filterButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // Show/hide cards
       projectCards.forEach((card) => {
         const type = card.dataset.type;
         if (filter === 'todos' || type === filter) {

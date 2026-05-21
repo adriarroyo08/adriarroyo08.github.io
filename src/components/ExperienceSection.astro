@@ -1,94 +1,96 @@
 ---
 const timeline = [
   {
-    color: "emerald",
     period: "Oct 2024 — Actualidad",
     title: "Desarrollador Fullstack",
-    description: "Entorno universitario — Desarrollo web con Java, Spring Boot y ZK Framework",
-    dot: "#00dc82",
-    glow: "rgba(0, 220, 130, 0.5)",
-    i18nDate: "exp.job1.date",
-    i18nTitle: "exp.job1.title",
-    i18nPlace: "exp.job1.place",
+    description: "Entorno universitario — Desarrollo web con Java, Spring Boot y ZK Framework. CI/CD, testing E2E, y automatizacion con IA.",
+    color: "#00f0ff",
+    active: true,
   },
   {
-    color: "blue",
     period: "2024",
-    title: "TFG: Testing E2E",
-    description: "Framework de testing automatizado con Playwright",
-    dot: "#38bdf8",
-    glow: "rgba(56, 189, 248, 0.5)",
-    i18nDate: "exp.job2.date",
-    i18nTitle: "exp.job2.title",
-    i18nPlace: "exp.job2.place",
+    title: "TFG: Testing E2E con Playwright",
+    description: "Framework de testing automatizado de extremo a extremo para procesos de matriculacion universitaria.",
+    color: "#39ff14",
   },
   {
-    color: "blue",
     period: "2020 — 2024",
     title: "Grado en Ingenieria Informatica",
-    description: "Universidad de Cordoba",
-    dot: "#38bdf8",
-    glow: "rgba(56, 189, 248, 0.5)",
-    i18nDate: "exp.job3.date",
-    i18nTitle: "exp.job3.title",
-    i18nPlace: "exp.job3.place",
+    description: "Universidad de Cordoba — Especializacion en desarrollo de software, algoritmos y sistemas distribuidos.",
+    color: "#bf5af2",
   },
   {
-    color: "purple",
     period: "2018 — 2020",
     title: "Bachillerato",
-    description: "IES Luis de Gongora, Cordoba",
-    dot: "#a78bfa",
-    glow: "rgba(167, 139, 250, 0.5)",
-    i18nDate: "exp.job4.date",
-    i18nTitle: "exp.job4.title",
-    i18nPlace: "exp.job4.place",
+    description: "IES Luis de Gongora, Cordoba — Ciencias y Tecnologia.",
+    color: "#ff2d78",
   },
 ];
 ---
 
-<section id="experience" class="reveal py-24 px-6 max-w-4xl mx-auto">
-  <div class="text-center mb-16">
-    <h2 class="text-4xl font-bold mb-4">
-      <span data-i18n="exp.title.pre">Mi </span><span class="gradient-text" data-i18n="exp.title.highlight">Trayectoria</span>
-    </h2>
-    <p class="text-zinc-400 text-lg" data-i18n="exp.subtitle">El camino recorrido hasta aqui</p>
-  </div>
+<section id="experience" class="reveal py-28 px-6 relative">
+  <div class="absolute top-0 left-0 w-64 h-64 rounded-full opacity-8 pointer-events-none"
+       style="background: radial-gradient(circle, #ff2d78, transparent 70%); filter: blur(100px); animation: breathe 11s ease-in-out infinite;"></div>
 
-  <div class="relative">
-    <!-- Timeline vertical line -->
-    <div class="absolute left-0 top-0 bottom-0 w-0.5 timeline-line"></div>
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-20">
+      <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+            style="font-family: var(--font-mono); color: #ff2d78; border-color: rgba(255,45,120,0.2); background: rgba(255,45,120,0.05);">
+        Experiencia
+      </span>
+      <h2 class="section-title text-4xl md:text-6xl mb-5">
+        Mi <span class="gradient-text-alt">Trayectoria</span>
+      </h2>
+      <p class="section-subtitle text-lg">El camino recorrido hasta aqui</p>
+    </div>
 
-    <div class="flex flex-col gap-10">
-      {timeline.map((item) => (
-        <div class="relative pl-8">
-          <!-- Dot -->
-          <div
-            class="absolute left-0 top-1 w-3 h-3 rounded-full -translate-x-[5px]"
-            style={`background-color: ${item.dot}; box-shadow: 0 0 8px 2px ${item.glow};`}
-          ></div>
+    <div class="relative">
+      <!-- Neural pathway line -->
+      <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px"
+           style="background: linear-gradient(to bottom, #00f0ff, #39ff14, #bf5af2, #ff2d78, transparent);"></div>
 
-          <!-- Content -->
-          <div class="card p-5">
-            <p class="text-xs font-mono mb-1" style={`color: ${item.dot};`} data-i18n={item.i18nDate}>
-              {item.period}
-            </p>
-            <h3 class="text-lg font-bold text-zinc-100 mb-1" data-i18n={item.i18nTitle}>{item.title}</h3>
-            <p class="text-sm text-zinc-400" data-i18n={item.i18nPlace}>{item.description}</p>
+      <div class="flex flex-col gap-0">
+        {timeline.map((item, i) => (
+          <div class="relative pl-16 md:pl-20 pb-14 last:pb-0 group">
+            <!-- Neural node with pulse -->
+            <div class="absolute left-[18px] md:left-[26px] top-3 z-10">
+              <div class="w-3.5 h-3.5 rounded-full transition-all duration-500 group-hover:scale-150"
+                   style={`background: ${item.color}; box-shadow: 0 0 12px ${item.color}60, 0 0 24px ${item.color}20; animation: neural-pulse 5s ease-in-out infinite; animation-delay: ${i * 1.2}s;`}>
+              </div>
+              {item.active && (
+                <div class="absolute inset-0 rounded-full animate-ping opacity-40"
+                     style={`background: ${item.color};`}></div>
+              )}
+            </div>
+
+            <!-- Horizontal synapse -->
+            <div class="absolute left-[32px] md:left-[40px] top-[18px] w-8 h-px opacity-20"
+                 style={`background: ${item.color};`}></div>
+
+            <!-- Content card -->
+            <div class="card p-7 transition-all duration-400"
+                 style={`border-left: 2px solid ${item.color}15;`}>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-[10px] uppercase tracking-[0.3em] font-medium"
+                      style={`color: ${item.color}; font-family: var(--font-mono);`}>{item.period}</span>
+                {item.active && (
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-semibold"
+                        style="background: rgba(0,240,255,0.1); color: #00f0ff; border: 1px solid rgba(0,240,255,0.2);">
+                    <span class="w-1 h-1 rounded-full bg-[#39ff14] animate-pulse"></span>
+                    Actual
+                  </span>
+                )}
+              </div>
+              <h3 class="text-lg font-bold mb-2" style="font-family: var(--font-display); color: var(--color-text-primary);">
+                {item.title}
+              </h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+                {item.description}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .timeline-line {
-    background: linear-gradient(
-      to bottom,
-      #00dc82,
-      #38bdf8 50%,
-      transparent 100%
-    );
-  }
-</style>

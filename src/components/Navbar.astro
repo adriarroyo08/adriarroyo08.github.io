@@ -1,37 +1,39 @@
 ---
-import LanguageToggle from '../i18n/LanguageToggle.tsx';
-const navItems = [
-  { key: "nav.about",      label: "Sobre mí",     href: "#about"      },
-  { key: "nav.stack",      label: "Stack",         href: "#stack"      },
-  { key: "nav.projects",   label: "Proyectos",     href: "#projects"   },
-  { key: "nav.ai",         label: "IA",            href: "#ai"         },
-  { key: "nav.experience", label: "Experiencia",   href: "#experience" },
-  { key: "nav.contact",    label: "Contacto",      href: "#contact"    },
-];
 ---
 
 <nav
   id="navbar"
-  class="fixed top-0 left-0 right-0 z-50 h-18 flex items-center justify-between px-6 md:px-12
-         bg-[#0a0a0f]/85 backdrop-blur-md border-b border-white/[0.06] transition-all duration-300"
-  style="height: 72px;"
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500"
+  style="height: 72px; background: rgba(6, 6, 18, 0.6); backdrop-filter: blur(20px) saturate(1.4);"
 >
-  <a href="/" class="flex items-center shrink-0 select-none">
-    <span class="font-mono text-xl font-bold text-white">&lt;</span>
-    <span class="font-mono text-xl font-bold bg-gradient-to-r from-[#00ff88] to-[#00aaff] bg-clip-text text-transparent">AA</span>
-    <span class="font-mono text-xl font-bold text-white">/&gt;</span>
+  <!-- Logo with neural pulse -->
+  <a href="/" class="flex items-center shrink-0 select-none group">
+    <span class="relative">
+      <span class="font-mono text-xl font-bold text-white/80 group-hover:text-white transition-colors">&lt;</span>
+      <span
+        class="font-mono text-xl font-extrabold gradient-text"
+        style="font-family: var(--font-display);"
+      >AA</span>
+      <span class="font-mono text-xl font-bold text-white/80 group-hover:text-white transition-colors">/&gt;</span>
+      <!-- Neural glow on hover -->
+      <span class="absolute -inset-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+            style="background: radial-gradient(circle, rgba(0,240,255,0.15) 0%, transparent 70%);"></span>
+    </span>
   </a>
 
-  <ul class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-    {navItems.map(({ key, label, href }) => (
+  <!-- Desktop nav links -->
+  <ul class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide" style="font-family: var(--font-body);">
+    {[
+      { label: "AI",         href: "#ai"         },
+      { label: "Stack",      href: "#stack"      },
+      { label: "Proyectos",  href: "#projects"   },
+      { label: "Trayectoria", href: "#experience" },
+      { label: "Contacto",   href: "#contact"    },
+    ].map(({ label, href }) => (
       <li>
         <a
           href={href}
-          data-i18n={key}
-          class="text-white/70 hover:text-[#00ff88] transition-colors duration-200 relative
-                 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0
-                 after:bg-[#00ff88] after:transition-all after:duration-200
-                 hover:after:w-full"
+          class="nav-link text-white/50 hover:text-[#00f0ff] transition-all duration-300 relative py-1"
         >
           {label}
         </a>
@@ -39,48 +41,85 @@ const navItems = [
     ))}
   </ul>
 
+  <!-- Right side -->
   <div class="flex items-center gap-3">
-    <div class="hidden md:block">
-      <LanguageToggle client:load />
-    </div>
+    <!-- CTA button -->
+    <a
+      href="#contact"
+      class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 border"
+      style="border-color: rgba(0,240,255,0.3); color: #00f0ff; background: rgba(0,240,255,0.05);"
+      onmouseenter="this.style.background='rgba(0,240,255,0.15)'; this.style.boxShadow='0 0 20px rgba(0,240,255,0.2)'"
+      onmouseleave="this.style.background='rgba(0,240,255,0.05)'; this.style.boxShadow='none'"
+    >
+      <span class="w-1.5 h-1.5 rounded-full bg-[#39ff14] animate-pulse"></span>
+      Hablemos
+    </a>
+
+    <!-- Hamburger (mobile) -->
     <button
       id="hamburger"
-      class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5
-             rounded-md border border-white/10 hover:border-white/30 transition-colors duration-200 cursor-pointer"
+      class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-xl transition-colors duration-200 cursor-pointer"
+      style="border: 1px solid rgba(0,240,255,0.15); background: rgba(0,240,255,0.03);"
       aria-label="Open menu"
       aria-expanded="false"
     >
-      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
-      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
-      <span class="hamburger-line block w-5 h-px bg-white/80 transition-all duration-300 origin-center"></span>
+      <span class="hamburger-line block w-5 h-px transition-all duration-300 origin-center" style="background: #00f0ff;"></span>
+      <span class="hamburger-line block w-5 h-px transition-all duration-300 origin-center" style="background: #00f0ff;"></span>
+      <span class="hamburger-line block w-5 h-px transition-all duration-300 origin-center" style="background: #00f0ff;"></span>
     </button>
   </div>
 </nav>
 
+<!-- Mobile fullscreen overlay -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-40 bg-[#0a0a0f]/97 backdrop-blur-xl flex flex-col items-center justify-center
-         opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-400"
+  style="background: rgba(6, 6, 18, 0.97); backdrop-filter: blur(30px);"
   aria-hidden="true"
 >
   <ul class="flex flex-col items-center gap-8 text-center">
-    {navItems.map(({ key, label, href }) => (
+    {[
+      { label: "AI",         href: "#ai"         },
+      { label: "Stack",      href: "#stack"      },
+      { label: "Proyectos",  href: "#projects"   },
+      { label: "Trayectoria", href: "#experience" },
+      { label: "Contacto",   href: "#contact"    },
+    ].map(({ label, href }) => (
       <li>
         <a
           href={href}
-          data-i18n={key}
-          class="mobile-nav-link text-3xl font-semibold text-white/80 hover:text-[#00ff88]
-                 transition-colors duration-200 tracking-wide"
+          class="mobile-nav-link text-3xl font-bold text-white/70 hover:text-[#00f0ff] transition-colors duration-200"
+          style="font-family: var(--font-display);"
         >
           {label}
         </a>
       </li>
     ))}
   </ul>
-  <div class="mt-12">
-    <LanguageToggle client:load />
-  </div>
 </div>
+
+<style>
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #00f0ff, #39ff14);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  #navbar.scrolled {
+    background: rgba(6, 6, 18, 0.92) !important;
+    box-shadow:
+      0 1px 0 rgba(0, 240, 255, 0.06),
+      0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+</style>
 
 <script>
   const navbar = document.getElementById("navbar");
@@ -121,10 +160,3 @@ const navItems = [
   mobileNavLinks.forEach((link) => { link.addEventListener("click", closeMenu); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menuOpen) closeMenu(); });
 </script>
-
-<style>
-  #navbar.scrolled {
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
-    background-color: rgba(10, 10, 15, 0.95);
-  }
-</style>

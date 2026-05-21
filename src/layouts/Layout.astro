@@ -27,12 +27,22 @@ const {
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#00ff88" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
 <body>
+  <!-- Noise texture overlay for depth -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Global organic background blobs -->
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="blob" style="width: 600px; height: 600px; background: #00f0ff; top: -10%; left: -5%; animation-delay: 0s;"></div>
+    <div class="blob" style="width: 500px; height: 500px; background: #bf5af2; top: 30%; right: -10%; animation-delay: 3s;"></div>
+    <div class="blob" style="width: 400px; height: 400px; background: #39ff14; bottom: 10%; left: 20%; animation-delay: 5s;"></div>
+    <div class="blob" style="width: 350px; height: 350px; background: #ff2d78; top: 60%; left: -15%; animation-delay: 7s;"></div>
+  </div>
+
   <slot />
+
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -41,14 +51,8 @@ const {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-  <script src="../i18n/i18n-client.ts"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
-    }
   </script>
 </body>
 </html>

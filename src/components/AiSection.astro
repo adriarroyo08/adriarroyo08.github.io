@@ -1,90 +1,94 @@
 ---
 ---
 
-<section id="ai" class="py-24 px-6">
+<section id="ai" class="py-28 px-6 relative">
+  <!-- Organic background accent -->
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
+       style="background: radial-gradient(circle, #00f0ff, transparent 70%); filter: blur(100px); animation: breathe 10s ease-in-out infinite;"></div>
+
   <div class="max-w-5xl mx-auto">
     <div class="reveal" id="ai-section-inner">
 
       <!-- Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">
-          <span data-i18n="ai.title.pre">Powered by </span><span class="gradient-text" data-i18n="ai.title.highlight">AI</span>
+      <div class="text-center mb-20">
+        <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+              style="font-family: var(--font-mono); color: #00f0ff; border-color: rgba(0,240,255,0.2); background: rgba(0,240,255,0.05);">
+          Inteligencia Artificial
+        </span>
+        <h2 class="section-title text-4xl md:text-6xl mb-5">
+          Powered by <span class="gradient-text">AI</span>
         </h2>
-        <p class="text-lg" style="color: var(--color-text-secondary);" data-i18n="ai.subtitle">
-          La IA no es una herramienta mas en mi stack. Es mi copiloto.
+        <p class="section-subtitle text-lg max-w-lg mx-auto">
+          La IA no es una herramienta mas en mi stack. Es mi copiloto de desarrollo.
         </p>
       </div>
 
-      <!-- Metrics row -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-20">
-
-        <div class="card p-6 text-center">
-          <div class="text-5xl font-bold gradient-text mb-2">5+</div>
-          <div class="font-bold text-base mb-1" style="color: var(--color-text-primary);" data-i18n="ai.metric1.label">Skills publicados</div>
-          <div class="text-sm" style="color: var(--color-text-muted);" data-i18n="ai.metric1.sub">en Claude Marketplace</div>
-        </div>
-
-        <div class="card p-6 text-center">
-          <div class="text-5xl font-bold gradient-text mb-2">10+</div>
-          <div class="font-bold text-base mb-1" style="color: var(--color-text-primary);" data-i18n="ai.metric2.label">Pipelines automatizados</div>
-          <div class="text-sm" style="color: var(--color-text-muted);" data-i18n="ai.metric2.sub">con asistencia IA</div>
-        </div>
-
-        <div class="card p-6 text-center">
-          <div class="text-5xl font-bold gradient-text mb-2">100%</div>
-          <div class="font-bold text-base mb-1" style="color: var(--color-text-primary);" data-i18n="ai.metric3.label">AI-First workflow</div>
-          <div class="text-sm" style="color: var(--color-text-muted);" data-i18n="ai.metric3.sub">desde ideacion hasta deploy</div>
-        </div>
-
+      <!-- Neural metrics -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-24">
+        {[
+          { value: "5+", label: "Skills publicados", sub: "Claude Marketplace", color: "#00f0ff" },
+          { value: "10+", label: "Pipelines automatizados", sub: "con asistencia IA", color: "#39ff14" },
+          { value: "100%", label: "AI-First workflow", sub: "ideacion a deploy", color: "#bf5af2" },
+        ].map(({ value, label, sub, color }) => (
+          <div class="card p-8 text-center group">
+            <div class="text-5xl md:text-6xl font-extrabold mb-3 transition-all duration-500 group-hover:scale-110"
+                 style={`font-family: var(--font-display); color: ${color}; text-shadow: 0 0 30px ${color}40;`}>
+              {value}
+            </div>
+            <div class="font-semibold text-base mb-1" style="color: var(--color-text-primary); font-family: var(--font-body);">{label}</div>
+            <div class="text-xs" style="color: var(--color-text-muted); font-family: var(--font-mono);">{sub}</div>
+            <!-- Neural accent line -->
+            <div class="mx-auto mt-4 h-px w-12 opacity-30" style={`background: ${color};`}></div>
+          </div>
+        ))}
       </div>
 
-      <!-- Timeline -->
-      <div class="mb-20">
-        <div class="relative pl-8 border-l-2" style="border-image: linear-gradient(to bottom, var(--color-green), var(--color-blue), var(--color-purple)) 1;">
+      <!-- AI Evolution Timeline -->
+      <div class="mb-24">
+        <div class="relative">
+          <!-- Vertical neural pathway -->
+          <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px"
+               style="background: linear-gradient(to bottom, #00f0ff, #39ff14, #bf5af2, transparent);"></div>
 
-          <!-- Item 1 -->
-          <div class="mb-12 relative">
-            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full border-2 border-current" style="background: var(--color-green); border-color: var(--color-green); box-shadow: 0 0 8px rgba(0,255,136,0.5);"></div>
-            <div class="text-xs font-mono mb-1" style="color: var(--color-green);" data-i18n="ai.timeline1.date">2025 Q4</div>
-            <h3 class="text-lg font-bold mb-1" style="color: var(--color-text-primary);" data-i18n="ai.timeline1.title">Primeros pasos con Claude Code</h3>
-            <p style="color: var(--color-text-secondary);" data-i18n="ai.timeline1.desc">Automatizacion de tareas DevOps basicas</p>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="mb-12 relative">
-            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full" style="background: var(--color-green); box-shadow: 0 0 8px rgba(0,255,136,0.5);"></div>
-            <div class="text-xs font-mono mb-1" style="color: var(--color-green);" data-i18n="ai.timeline2.date">2025 Q1</div>
-            <h3 class="text-lg font-bold mb-1" style="color: var(--color-text-primary);" data-i18n="ai.timeline2.title">MCP Servers &amp; Custom Skills</h3>
-            <p style="color: var(--color-text-secondary);" data-i18n="ai.timeline2.desc">Desarrollo de servidores MCP para Azure DevOps y herramientas custom</p>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="mb-12 relative">
-            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full" style="background: var(--color-green); box-shadow: 0 0 8px rgba(0,255,136,0.5);"></div>
-            <div class="text-xs font-mono mb-1" style="color: var(--color-green);" data-i18n="ai.timeline3.date">2025 Q2</div>
-            <h3 class="text-lg font-bold mb-1" style="color: var(--color-text-primary);" data-i18n="ai.timeline3.title">AI-Driven DevOps</h3>
-            <p style="color: var(--color-text-secondary);" data-i18n="ai.timeline3.desc">Reportes OWASP con IA, analisis Kibana automatizado, skills en marketplace</p>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="relative">
-            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full" style="background: var(--color-green); box-shadow: 0 0 8px rgba(0,255,136,0.5);"></div>
-            <div class="text-xs font-mono mb-1" style="color: var(--color-green);" data-i18n="ai.timeline4.date">2025 Q3</div>
-            <h3 class="text-lg font-bold mb-1" style="color: var(--color-text-primary);" data-i18n="ai.timeline4.title">Full AI Engineering</h3>
-            <p style="color: var(--color-text-secondary);" data-i18n="ai.timeline4.desc">Portfolio, trading bots y apps completas construidas con Claude Code</p>
-          </div>
-
+          {[
+            { date: "2024 Q4", title: "Primeros pasos con Claude Code", desc: "Automatizacion de tareas DevOps basicas", color: "#00f0ff" },
+            { date: "2025 Q1", title: "MCP Servers & Custom Skills", desc: "Desarrollo de servidores MCP para Azure DevOps y herramientas custom", color: "#39ff14" },
+            { date: "2025 Q2", title: "AI-Driven DevOps", desc: "Reportes OWASP con IA, analisis Kibana automatizado, skills en marketplace", color: "#bf5af2" },
+            { date: "2025 Q3", title: "Full AI Engineering", desc: "Portfolio, trading bots y apps completas construidas con Claude Code", color: "#ff2d78" },
+          ].map(({ date, title, desc, color }, i) => (
+            <div class="relative pl-16 md:pl-20 mb-14 last:mb-0 group">
+              <!-- Neural node -->
+              <div class="absolute left-[18px] md:left-[26px] top-2 w-3 h-3 rounded-full transition-all duration-500 group-hover:scale-150"
+                   style={`background: ${color}; box-shadow: 0 0 12px ${color}80; animation: neural-pulse 4s ease-in-out infinite; animation-delay: ${i * 0.8}s;`}>
+              </div>
+              <!-- Synapse line -->
+              <div class="absolute left-[30px] md:left-[38px] top-[14px] w-6 h-px opacity-30"
+                   style={`background: ${color};`}></div>
+              <div class="card p-6 transition-all duration-300 group-hover:border-opacity-50"
+                   style={`border-color: ${color}15;`}>
+                <span class="text-[10px] uppercase tracking-[0.3em] font-medium"
+                      style={`color: ${color}; font-family: var(--font-mono);`}>{date}</span>
+                <h3 class="text-lg font-bold mt-2 mb-1" style="font-family: var(--font-display); color: var(--color-text-primary);">
+                  {title}
+                </h3>
+                <p class="text-sm" style="color: var(--color-text-secondary);">{desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       <!-- Quote block -->
-      <blockquote class="card p-8 text-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5" style="background: linear-gradient(135deg, var(--color-green), var(--color-blue), var(--color-purple));"></div>
-        <span class="text-6xl leading-none font-serif absolute top-4 left-6 opacity-20" style="color: var(--color-green);">&ldquo;</span>
-        <p class="text-lg md:text-xl italic leading-relaxed relative z-10" style="color: var(--color-text-primary);" data-i18n="ai.quote">
+      <blockquote class="card p-10 md:p-14 text-center relative">
+        <!-- Decorative neural glow -->
+        <div class="absolute inset-0 opacity-5 rounded-[20px]"
+             style="background: radial-gradient(ellipse at 30% 50%, #00f0ff, transparent 60%), radial-gradient(ellipse at 70% 50%, #bf5af2, transparent 60%);"></div>
+        <span class="text-7xl leading-none absolute top-6 left-8 opacity-10" style="color: #00f0ff; font-family: var(--font-display);">&ldquo;</span>
+        <p class="text-lg md:text-2xl italic leading-relaxed relative z-10 max-w-2xl mx-auto"
+           style="color: var(--color-text-primary); font-family: var(--font-body); font-weight: 300;">
           I believe the developers who will thrive are those who learn to collaborate with AI &mdash; not just use it, but think with it.
         </p>
-        <span class="text-6xl leading-none font-serif absolute bottom-0 right-6 opacity-20" style="color: var(--color-blue);">&rdquo;</span>
+        <span class="text-7xl leading-none absolute bottom-2 right-8 opacity-10" style="color: #bf5af2; font-family: var(--font-display);">&rdquo;</span>
       </blockquote>
 
     </div>
@@ -101,7 +105,7 @@
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     observer.observe(el);
   }
