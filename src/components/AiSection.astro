@@ -1,7 +1,7 @@
 ---
 ---
 
-<section id="ai" class="py-28 px-6 relative">
+<section id="ai" class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
   <!-- Organic background accent -->
   <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
        style="background: radial-gradient(circle, #00f0ff, transparent 70%); filter: blur(100px); animation: breathe 10s ease-in-out infinite;"></div>
@@ -10,44 +10,43 @@
     <div class="reveal" id="ai-section-inner">
 
       <!-- Header -->
-      <div class="text-center mb-20">
-        <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+      <div class="text-center mb-12 sm:mb-16 md:mb-20">
+        <span class="inline-block px-3 py-1 mb-3 sm:mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
               style="font-family: var(--font-mono); color: #00f0ff; border-color: rgba(0,240,255,0.2); background: rgba(0,240,255,0.05);">
           Inteligencia Artificial
         </span>
-        <h2 class="section-title text-4xl md:text-6xl mb-5">
+        <h2 class="section-title text-3xl sm:text-4xl md:text-6xl mb-3 sm:mb-5">
           Powered by <span class="gradient-text">AI</span>
         </h2>
-        <p class="section-subtitle text-lg max-w-lg mx-auto">
+        <p class="section-subtitle text-sm sm:text-lg max-w-lg mx-auto">
           La IA no es una herramienta mas en mi stack. Es mi copiloto de desarrollo.
         </p>
       </div>
 
       <!-- Neural metrics -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20 md:mb-24">
         {[
           { value: "5+", label: "Skills publicados", sub: "Claude Marketplace", color: "#00f0ff" },
           { value: "10+", label: "Pipelines automatizados", sub: "con asistencia IA", color: "#39ff14" },
           { value: "100%", label: "AI-First workflow", sub: "ideacion a deploy", color: "#bf5af2" },
         ].map(({ value, label, sub, color }) => (
-          <div class="card p-8 text-center group">
-            <div class="text-5xl md:text-6xl font-extrabold mb-3 transition-all duration-500 group-hover:scale-110"
+          <div class="card p-5 sm:p-8 text-center group">
+            <div class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-2 sm:mb-3 transition-all duration-500 group-hover:scale-110"
                  style={`font-family: var(--font-display); color: ${color}; text-shadow: 0 0 30px ${color}40;`}>
               {value}
             </div>
-            <div class="font-semibold text-base mb-1" style="color: var(--color-text-primary); font-family: var(--font-body);">{label}</div>
-            <div class="text-xs" style="color: var(--color-text-muted); font-family: var(--font-mono);">{sub}</div>
-            <!-- Neural accent line -->
-            <div class="mx-auto mt-4 h-px w-12 opacity-30" style={`background: ${color};`}></div>
+            <div class="font-semibold text-sm sm:text-base mb-1" style="color: var(--color-text-primary); font-family: var(--font-body);">{label}</div>
+            <div class="text-[10px] sm:text-xs" style="color: var(--color-text-muted); font-family: var(--font-mono);">{sub}</div>
+            <div class="mx-auto mt-3 sm:mt-4 h-px w-12 opacity-30" style={`background: ${color};`}></div>
           </div>
         ))}
       </div>
 
       <!-- AI Evolution Timeline -->
-      <div class="mb-24">
+      <div class="mb-16 sm:mb-20 md:mb-24">
         <div class="relative">
           <!-- Vertical neural pathway -->
-          <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px"
+          <div class="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-px"
                style="background: linear-gradient(to bottom, #00f0ff, #39ff14, #bf5af2, transparent);"></div>
 
           {[
@@ -56,22 +55,22 @@
             { date: "2025 Q2", title: "AI-Driven DevOps", desc: "Reportes OWASP con IA, analisis Kibana automatizado, skills en marketplace", color: "#bf5af2" },
             { date: "2025 Q3", title: "Full AI Engineering", desc: "Portfolio, trading bots y apps completas construidas con Claude Code", color: "#ff2d78" },
           ].map(({ date, title, desc, color }, i) => (
-            <div class="relative pl-16 md:pl-20 mb-14 last:mb-0 group">
+            <div class="relative pl-10 sm:pl-16 md:pl-20 mb-8 sm:mb-14 last:mb-0 group">
               <!-- Neural node -->
-              <div class="absolute left-[18px] md:left-[26px] top-2 w-3 h-3 rounded-full transition-all duration-500 group-hover:scale-150"
+              <div class="absolute left-[10px] sm:left-[18px] md:left-[26px] top-2 w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full transition-all duration-500 group-hover:scale-150"
                    style={`background: ${color}; box-shadow: 0 0 12px ${color}80; animation: neural-pulse 4s ease-in-out infinite; animation-delay: ${i * 0.8}s;`}>
               </div>
               <!-- Synapse line -->
-              <div class="absolute left-[30px] md:left-[38px] top-[14px] w-6 h-px opacity-30"
+              <div class="absolute left-[22px] sm:left-[30px] md:left-[38px] top-[12px] sm:top-[14px] w-4 sm:w-6 h-px opacity-30"
                    style={`background: ${color};`}></div>
-              <div class="card p-6 transition-all duration-300 group-hover:border-opacity-50"
+              <div class="card p-4 sm:p-6 transition-all duration-300 group-hover:border-opacity-50"
                    style={`border-color: ${color}15;`}>
-                <span class="text-[10px] uppercase tracking-[0.3em] font-medium"
+                <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] font-medium"
                       style={`color: ${color}; font-family: var(--font-mono);`}>{date}</span>
-                <h3 class="text-lg font-bold mt-2 mb-1" style="font-family: var(--font-display); color: var(--color-text-primary);">
+                <h3 class="text-base sm:text-lg font-bold mt-1.5 sm:mt-2 mb-1" style="font-family: var(--font-display); color: var(--color-text-primary);">
                   {title}
                 </h3>
-                <p class="text-sm" style="color: var(--color-text-secondary);">{desc}</p>
+                <p class="text-xs sm:text-sm" style="color: var(--color-text-secondary);">{desc}</p>
               </div>
             </div>
           ))}
@@ -79,16 +78,15 @@
       </div>
 
       <!-- Quote block -->
-      <blockquote class="card p-10 md:p-14 text-center relative">
-        <!-- Decorative neural glow -->
-        <div class="absolute inset-0 opacity-5 rounded-[20px]"
+      <blockquote class="card p-6 sm:p-10 md:p-14 text-center relative">
+        <div class="absolute inset-0 opacity-5 rounded-[inherit]"
              style="background: radial-gradient(ellipse at 30% 50%, #00f0ff, transparent 60%), radial-gradient(ellipse at 70% 50%, #bf5af2, transparent 60%);"></div>
-        <span class="text-7xl leading-none absolute top-6 left-8 opacity-10" style="color: #00f0ff; font-family: var(--font-display);">&ldquo;</span>
-        <p class="text-lg md:text-2xl italic leading-relaxed relative z-10 max-w-2xl mx-auto"
+        <span class="text-5xl sm:text-7xl leading-none absolute top-4 sm:top-6 left-4 sm:left-8 opacity-10" style="color: #00f0ff; font-family: var(--font-display);">&ldquo;</span>
+        <p class="text-sm sm:text-lg md:text-2xl italic leading-relaxed relative z-10 max-w-2xl mx-auto px-4 sm:px-0"
            style="color: var(--color-text-primary); font-family: var(--font-body); font-weight: 300;">
           I believe the developers who will thrive are those who learn to collaborate with AI &mdash; not just use it, but think with it.
         </p>
-        <span class="text-7xl leading-none absolute bottom-2 right-8 opacity-10" style="color: #bf5af2; font-family: var(--font-display);">&rdquo;</span>
+        <span class="text-5xl sm:text-7xl leading-none absolute bottom-1 sm:bottom-2 right-4 sm:right-8 opacity-10" style="color: #bf5af2; font-family: var(--font-display);">&rdquo;</span>
       </blockquote>
 
     </div>

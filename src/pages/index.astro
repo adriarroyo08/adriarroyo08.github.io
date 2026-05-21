@@ -16,7 +16,7 @@ import GitHubSection from '../components/GitHubSection.astro';
   <Navbar />
 
   <!-- HERO -->
-  <header id="hero" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-16 relative">
+  <header id="hero" class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 relative">
     <!-- Neural background mesh -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <svg class="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
@@ -33,29 +33,29 @@ import GitHubSection from '../components/GitHubSection.astro';
 
     <div class="relative z-10 w-full max-w-3xl">
       <!-- Status badge -->
-      <div class="mb-8">
-        <span class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-full border"
+      <div class="mb-5 sm:mb-8">
+        <span class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium rounded-full border"
               style="border-color: rgba(0,240,255,0.2); background: rgba(0,240,255,0.05); color: #00f0ff; font-family: var(--font-mono);">
-          <span class="w-2 h-2 rounded-full bg-[#39ff14] animate-pulse"></span>
+          <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#39ff14] animate-pulse"></span>
           Fullstack Developer & AI Engineer
         </span>
       </div>
 
       <!-- Main heading -->
-      <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6" style="font-family: var(--font-display); letter-spacing: -0.03em;">
+      <h1 class="text-3xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] mb-4 sm:mb-6" style="font-family: var(--font-display); letter-spacing: -0.03em;">
         Hola, soy<br>
         <span class="gradient-text">Adrian Arroyo</span>
       </h1>
 
-      <p class="text-lg md:text-xl mb-12 max-w-xl leading-relaxed" style="color: var(--color-text-secondary); font-weight: 300;">
+      <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed" style="color: var(--color-text-secondary); font-weight: 300;">
         Construyo software que escala, automatizo lo que otros hacen a mano, y colaboro con IA para ir mas rapido y mas lejos.
       </p>
 
       <!-- Terminal -->
       <Terminal client:load />
 
-      <!-- Scroll indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <!-- Scroll indicator (hidden on very small screens) -->
+      <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
         <span class="text-[10px] uppercase tracking-[0.3em] text-white/20" style="font-family: var(--font-mono);">scroll</span>
         <div class="w-px h-8 relative overflow-hidden">
           <div class="w-full h-full bg-gradient-to-b from-[#00f0ff] to-transparent animate-bounce"></div>
@@ -82,14 +82,14 @@ import GitHubSection from '../components/GitHubSection.astro';
   </main>
 
   <!-- Footer -->
-  <footer class="relative text-center py-16 border-t" style="border-color: rgba(0,240,255,0.06);">
-    <p class="text-sm" style="color: var(--color-text-secondary); font-family: var(--font-body);">
+  <footer class="relative text-center py-10 sm:py-16 px-4 border-t" style="border-color: rgba(0,240,255,0.06);">
+    <p class="text-xs sm:text-sm" style="color: var(--color-text-secondary); font-family: var(--font-body);">
       Disenado y desarrollado por <span class="gradient-text font-semibold">Adrian Arroyo Perez</span>
     </p>
-    <p class="text-xs mt-3" style="color: var(--color-text-muted); font-family: var(--font-mono);">
+    <p class="text-[10px] sm:text-xs mt-2 sm:mt-3" style="color: var(--color-text-muted); font-family: var(--font-mono);">
       Astro + React + Three.js + Claude Code
     </p>
-    <div class="flex justify-center gap-4 mt-6">
+    <div class="flex justify-center gap-4 mt-4 sm:mt-6">
       <div class="w-1 h-1 rounded-full bg-[#00f0ff] opacity-40"></div>
       <div class="w-1 h-1 rounded-full bg-[#39ff14] opacity-40"></div>
       <div class="w-1 h-1 rounded-full bg-[#bf5af2] opacity-40"></div>

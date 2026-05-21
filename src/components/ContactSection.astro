@@ -47,48 +47,48 @@ const contacts = [
 ];
 ---
 
-<section id="contact" class="reveal py-28 px-6 relative">
+<section id="contact" class="reveal py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
   <!-- Background glow -->
   <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-8 pointer-events-none"
        style="background: radial-gradient(circle, #00f0ff, transparent 60%); filter: blur(120px); animation: breathe 10s ease-in-out infinite;"></div>
 
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-20">
-      <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+    <div class="text-center mb-12 sm:mb-16 md:mb-20">
+      <span class="inline-block px-3 py-1 mb-3 sm:mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
             style="font-family: var(--font-mono); color: #00f0ff; border-color: rgba(0,240,255,0.2); background: rgba(0,240,255,0.05);">
         Contacto
       </span>
-      <h2 class="section-title text-4xl md:text-6xl mb-5">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-6xl mb-3 sm:mb-5">
         Hablemos<span class="gradient-text">.</span>
       </h2>
-      <p class="section-subtitle text-lg">Interesado en trabajar juntos?</p>
+      <p class="section-subtitle text-sm sm:text-lg">Interesado en trabajar juntos?</p>
     </div>
 
     <!-- Neural contact grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5">
       {contacts.map((contact) => (
         <a
           href={contact.href}
           target={contact.download ? "_self" : "_blank"}
           rel={contact.download ? undefined : "noopener noreferrer"}
           download={contact.download ? true : undefined}
-          class="card contact-card flex items-center gap-5 px-7 py-6 group"
+          class="card contact-card flex items-center gap-3 sm:gap-5 px-4 sm:px-7 py-4 sm:py-6 group"
         >
           <!-- Icon with neural glow -->
-          <span class="flex items-center justify-center w-12 h-12 rounded-2xl shrink-0 transition-all duration-300 group-hover:scale-110"
+          <span class="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-xl sm:rounded-2xl shrink-0 transition-all duration-300 group-hover:scale-110"
                 style={`color: ${contact.color}; background: ${contact.color}10; border: 1px solid ${contact.color}20;`}
                 set:html={contact.icon} />
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] mb-1" style={`color: ${contact.color}; font-family: var(--font-mono);`}>
+          <div class="min-w-0">
+            <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-0.5 sm:mb-1" style={`color: ${contact.color}; font-family: var(--font-mono);`}>
               {contact.label}
             </p>
-            <p class="text-sm font-medium transition-colors duration-300"
+            <p class="text-xs sm:text-sm font-medium transition-colors duration-300 truncate"
                style={`color: var(--color-text-primary); font-family: var(--font-body);`}>
               {contact.value}
             </p>
           </div>
-          <!-- Arrow -->
-          <svg class="ml-auto w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <!-- Arrow (hidden on mobile for space) -->
+          <svg class="hidden sm:block ml-auto w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-300 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -96,15 +96,15 @@ const contacts = [
     </div>
 
     <!-- Bottom neural decoration -->
-    <div class="flex justify-center items-center gap-6 mt-20">
-      <div class="h-px flex-1 max-w-24" style="background: linear-gradient(90deg, transparent, rgba(0,240,255,0.2));"></div>
-      <div class="flex gap-3">
+    <div class="flex justify-center items-center gap-4 sm:gap-6 mt-12 sm:mt-20">
+      <div class="h-px flex-1 max-w-16 sm:max-w-24" style="background: linear-gradient(90deg, transparent, rgba(0,240,255,0.2));"></div>
+      <div class="flex gap-2 sm:gap-3">
         {["#00f0ff", "#39ff14", "#bf5af2", "#ff2d78"].map((c, i) => (
-          <div class="w-1.5 h-1.5 rounded-full"
+          <div class="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full"
                style={`background: ${c}; box-shadow: 0 0 6px ${c}60; animation: neural-pulse 4s ease-in-out infinite; animation-delay: ${i * 0.5}s;`}></div>
         ))}
       </div>
-      <div class="h-px flex-1 max-w-24" style="background: linear-gradient(90deg, rgba(191,90,242,0.2), transparent);"></div>
+      <div class="h-px flex-1 max-w-16 sm:max-w-24" style="background: linear-gradient(90deg, rgba(191,90,242,0.2), transparent);"></div>
     </div>
   </div>
 </section>
@@ -115,5 +115,10 @@ const contacts = [
   }
   .contact-card:hover {
     transform: translateY(-4px);
+  }
+  @media (hover: none) {
+    .contact-card:hover {
+      transform: none;
+    }
   }
 </style>

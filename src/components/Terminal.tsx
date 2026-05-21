@@ -229,7 +229,8 @@ export default function Terminal() {
     const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノ";
     let count = 0;
     matrixRef.current = window.setInterval(() => {
-      const line = Array.from({ length: 60 }, () =>
+      const cols = window.innerWidth < 640 ? 30 : 60;
+      const line = Array.from({ length: cols }, () =>
         chars[Math.floor(Math.random() * chars.length)]
       ).join("");
       setLines((prev) => [...prev, mkLine("system", line)]);
@@ -500,7 +501,7 @@ export default function Terminal() {
       case "error":
         return <div key={line.id} className={`${base} text-red-400`}>{line.text}</div>;
       case "ascii":
-        return <div key={line.id} className={`${base} text-[#00ff88]/80 text-xs leading-none`}>{line.text}</div>;
+        return <div key={line.id} className={`${base} text-[#00ff88]/80 text-[9px] sm:text-xs leading-none overflow-x-auto`}>{line.text}</div>;
     }
   };
 
@@ -508,22 +509,22 @@ export default function Terminal() {
 
   return (
     <div
-      className="w-full max-w-3xl mx-auto rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 backdrop-blur-md"
+      className="w-full max-w-3xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 backdrop-blur-md"
       onClick={handleTerminalClick}
       style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}
     >
       {/* Window chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-zinc-900/90 border-b border-white/10 select-none">
-        <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
-        <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block" />
-        <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
-        <span className="ml-auto text-xs text-zinc-400 tracking-wide">
+      <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-zinc-900/90 border-b border-white/10 select-none">
+        <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-red-500 inline-block" />
+        <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-yellow-400 inline-block" />
+        <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-green-500 inline-block" />
+        <span className="ml-auto text-[10px] sm:text-xs text-zinc-400 tracking-wide">
           adrian@portfolio:~$
         </span>
       </div>
 
       {/* Terminal body */}
-      <div className={`bg-black/60 p-5 min-h-[320px] max-h-[520px] overflow-y-auto text-sm flex flex-col gap-1 cursor-text ${matrixMode ? "text-[#00ff88]" : ""}`}>
+      <div className={`bg-black/60 p-3 sm:p-5 min-h-[220px] sm:min-h-[320px] max-h-[360px] sm:max-h-[520px] overflow-y-auto overflow-x-hidden text-xs sm:text-sm flex flex-col gap-1 cursor-text ${matrixMode ? "text-[#00ff88]" : ""}`}>
         {lines.map(renderLine)}
 
         {typingCmd !== null && (

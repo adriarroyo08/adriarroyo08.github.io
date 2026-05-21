@@ -52,27 +52,27 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="reveal py-28 px-6 relative">
+<section id="projects" class="reveal py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
   <div class="absolute top-20 right-0 w-72 h-72 rounded-full opacity-8 pointer-events-none"
        style="background: radial-gradient(circle, #bf5af2, transparent 70%); filter: blur(100px); animation: breathe 9s ease-in-out infinite;"></div>
 
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+    <div class="text-center mb-10 sm:mb-16">
+      <span class="inline-block px-3 py-1 mb-3 sm:mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
             style="font-family: var(--font-mono); color: #bf5af2; border-color: rgba(191,90,242,0.2); background: rgba(191,90,242,0.05);">
         Portfolio
       </span>
-      <h2 class="section-title text-4xl md:text-6xl mb-5">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-6xl mb-3 sm:mb-5">
         Mis <span class="gradient-text">Proyectos</span>
       </h2>
-      <p class="section-subtitle text-lg">Una seleccion de lo que he construido</p>
+      <p class="section-subtitle text-sm sm:text-lg">Una seleccion de lo que he construido</p>
     </div>
 
     <!-- Filter buttons -->
-    <div class="flex justify-center gap-3 mb-14 flex-wrap">
+    <div class="flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-14 flex-wrap">
       {["todos", "profesional", "personal"].map((filter) => (
         <button
-          class={`filter-btn px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer ${filter === 'todos' ? 'active' : ''}`}
+          class={`filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer ${filter === 'todos' ? 'active' : ''}`}
           data-filter={filter}
           style="font-family: var(--font-mono);"
         >
@@ -81,27 +81,27 @@ const projects = [
       ))}
     </div>
 
-    <!-- Projects grid -->
-    <div class="grid gap-6" style="grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));">
+    <!-- Projects grid — responsive minmax -->
+    <div class="grid gap-4 sm:gap-6 projects-grid">
       {projects.map((project) => (
         <div
-          class="card project-card p-7 flex flex-col gap-5 group"
+          class="card project-card p-5 sm:p-7 flex flex-col gap-3 sm:gap-5 group"
           data-type={project.type}
         >
           <!-- Top accent line -->
-          <div class="h-px w-16 rounded-full transition-all duration-500 group-hover:w-full"
+          <div class="h-px w-12 sm:w-16 rounded-full transition-all duration-500 group-hover:w-full"
                style={`background: ${project.accent};`}></div>
 
           <!-- Type badge -->
           <div>
             {project.type === "profesional" ? (
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+              <span class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider"
                     style="background: rgba(0,240,255,0.08); color: #00f0ff; border: 1px solid rgba(0,240,255,0.15);">
                 <span class="w-1 h-1 rounded-full bg-[#00f0ff]"></span>
                 Profesional
               </span>
             ) : (
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+              <span class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider"
                     style="background: rgba(191,90,242,0.08); color: #bf5af2; border: 1px solid rgba(191,90,242,0.15);">
                 <span class="w-1 h-1 rounded-full bg-[#bf5af2]"></span>
                 Personal
@@ -110,17 +110,17 @@ const projects = [
           </div>
 
           <!-- Title -->
-          <h3 class="text-xl font-bold" style="font-family: var(--font-display); color: var(--color-text-primary);">
+          <h3 class="text-lg sm:text-xl font-bold" style="font-family: var(--font-display); color: var(--color-text-primary);">
             {project.title}
           </h3>
 
           <!-- Description -->
-          <p class="text-sm leading-relaxed flex-1" style="color: var(--color-text-secondary);">
+          <p class="text-xs sm:text-sm leading-relaxed flex-1" style="color: var(--color-text-secondary);">
             {project.description}
           </p>
 
           <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mt-auto">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
             {project.tags.map((tag) => (
               <span class="tag">{tag}</span>
             ))}
@@ -132,6 +132,22 @@ const projects = [
 </section>
 
 <style>
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .projects-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    }
+  }
+
   .filter-btn {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.08);

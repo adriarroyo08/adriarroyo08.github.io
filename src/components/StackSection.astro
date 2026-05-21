@@ -43,33 +43,33 @@ const categories = [
 ];
 ---
 
-<section id="stack" class="reveal py-28 px-6 relative">
+<section id="stack" class="reveal py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
   <!-- Background accent -->
   <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-8 pointer-events-none"
        style="background: radial-gradient(circle, #39ff14, transparent 70%); filter: blur(120px); animation: breathe 12s ease-in-out infinite;"></div>
 
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-20">
-      <span class="inline-block px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
+    <div class="text-center mb-12 sm:mb-16 md:mb-20">
+      <span class="inline-block px-3 py-1 mb-3 sm:mb-4 text-[10px] uppercase tracking-[0.3em] rounded-full border"
             style="font-family: var(--font-mono); color: #39ff14; border-color: rgba(57,255,20,0.2); background: rgba(57,255,20,0.05);">
         Tecnologias
       </span>
-      <h2 class="section-title text-4xl md:text-6xl mb-5">
+      <h2 class="section-title text-3xl sm:text-4xl md:text-6xl mb-3 sm:mb-5">
         Mi <span class="gradient-text">Stack</span>
       </h2>
-      <p class="section-subtitle text-lg">
+      <p class="section-subtitle text-sm sm:text-lg">
         Red neuronal de tecnologias con las que trabajo dia a dia
       </p>
     </div>
 
     <!-- Category clusters -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
       {categories.map((cat) => (
-        <div class="card p-8 group">
+        <div class="card p-5 sm:p-6 md:p-8 group">
           <!-- Category header -->
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-2 h-2 rounded-full" style={`background: ${cat.color}; box-shadow: 0 0 10px ${cat.color}60;`}></div>
-            <h3 class="text-sm uppercase tracking-[0.2em] font-semibold"
+          <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div class="w-2 h-2 rounded-full shrink-0" style={`background: ${cat.color}; box-shadow: 0 0 10px ${cat.color}60;`}></div>
+            <h3 class="text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] font-semibold"
                 style={`color: ${cat.color}; font-family: var(--font-mono);`}>
               {cat.name}
             </h3>
@@ -77,16 +77,16 @@ const categories = [
           </div>
 
           <!-- Tech items as neural nodes -->
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-2 sm:gap-4">
             {cat.items.map((item, i) => (
-              <div class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:bg-white/[0.03] group/item">
+              <div class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl transition-all duration-300 hover:bg-white/[0.03] group/item">
                 <!-- Neural node -->
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover/item:scale-110"
+                <div class="w-8 sm:w-10 h-8 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover/item:scale-110"
                      style={`background: ${cat.color}08; border: 1px solid ${cat.color}20;`}>
-                  <div class="w-2 h-2 rounded-full transition-all duration-300 group-hover/item:shadow-lg"
+                  <div class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full transition-all duration-300 group-hover/item:shadow-lg"
                        style={`background: ${cat.color}; box-shadow: 0 0 6px ${cat.color}40;`}></div>
                 </div>
-                <span class="text-sm font-medium" style="color: var(--color-text-primary); font-family: var(--font-body);">
+                <span class="text-xs sm:text-sm font-medium" style="color: var(--color-text-primary); font-family: var(--font-body);">
                   {item.name}
                 </span>
               </div>
@@ -94,7 +94,7 @@ const categories = [
           </div>
 
           <!-- Decorative synapse line at bottom -->
-          <div class="mt-6 h-px w-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+          <div class="mt-4 sm:mt-6 h-px w-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                style={`background: linear-gradient(90deg, transparent, ${cat.color}, transparent);`}></div>
         </div>
       ))}
